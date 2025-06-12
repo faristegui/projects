@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contactos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+  <!-- Barra superior fija -->
+  <header class="sticky top-0 bg-white shadow p-4 flex flex-wrap items-center justify-between gap-4 z-10">
+    <h1 class="text-2xl font-semibold">📇 Contactos</h1>
+
+    <div class="flex items-center gap-4 flex-wrap">
+      <label for="filter-date" class="text-sm font-medium">Filtrar por fecha:</label>
+      <input type="date" id="filter-date" class="border border-gray-300 rounded px-3 py-2 text-sm" />
+    </div>
+  </header>
+
+  <!-- Lista de contactos -->
+  <main class="p-6 space-y-4 w-full">
+
+    <!-- Contacto -->
+    <div class="bg-white rounded-lg shadow p-4 flex justify-between items-center w-full">
+      <div class="flex flex-col md:flex-row md:items-center md:gap-6 flex-1">
+        <div>
+          <h2 class="font-semibold text-lg">María López</h2>
+          <p class="text-sm text-gray-600">Consulta: Disponibilidad de departamentos en Palermo</p>
+        </div>
+        <div class="text-sm text-gray-500 mt-2 md:mt-0">
+          <p>📅 10/06/2025</p>
+          <p>🌐 Portal: Zonaprop</p>
+        </div>
+      </div>
+      <button class="btn-responder bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm ml-4 flex-shrink-0">
+        ✉️ Responder
+      </button>
+    </div>
+
+    <div class="bg-white rounded-lg shadow p-4 flex justify-between items-center w-full">
+      <div class="flex flex-col md:flex-row md:items-center md:gap-6 flex-1">
+        <div>
+          <h2 class="font-semibold text-lg">Carlos Ruiz</h2>
+          <p class="text-sm text-gray-600">Consulta: Consulta sobre cuotas y financiamiento</p>
+        </div>
+        <div class="text-sm text-gray-500 mt-2 md:mt-0">
+          <p>📅 09/06/2025</p>
+          <p>🌐 Portal: Argenprop</p>
+        </div>
+      </div>
+      <button class="btn-responder bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm ml-4 flex-shrink-0">
+        ✉️ Responder
+      </button>
+    </div>
+
+    <!-- Más contactos ... -->
+
+  </main>
+
+  <!-- Modal responder -->
+  <div id="modalResponder" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+    <div class="bg-white rounded-lg shadow-lg max-w-md w-full p-6">
+      <h3 class="text-xl font-semibold mb-4">Responder a <span id="nombreContacto" class="text-blue-600"></span></h3>
+      <textarea id="mensajeRespuesta" rows="5" class="w-full border border-gray-300 rounded p-3 text-gray-800" placeholder="Escribí tu mensaje aquí..."></textarea>
+      <div class="flex justify-end gap-4 mt-4">
+        <button id="cancelarRespuesta" class="px-4 py-2 rounded bg-gray-300 hover:bg-gray-400 text-gray-800">Cancelar</button>
+        <button id="enviarRespuesta" class="px-4 py-2 rounded bg-blue-600 hover:bg-blue-700 text-white">Enviar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById('modalResponder');
+    const nombreContactoSpan = document.getElementById('nombreContacto');
+    const mensajeTextarea = document.getElementById('mensajeRespuesta');
+    const cancelarBtn = document.getElementById('cancelarRespuesta');
+    const enviarBtn = document.getElementById('enviarRespuesta');
+    let contactoActual = null;
+
+    document.querySelectorAll('.btn-responder').forEach(button => {
+      button.addEventListener('click', () => {
+        const card = button.closest('div.bg-white');
+        contactoActual = card.querySelector('h2').textContent;
+        nombreContactoSpan.textContent = contactoActual;
+        mensajeTextarea.value = '';
+        modal.classList.remove('hidden');
+        mensajeTextarea.focus();
+      });
+    });
+
+    cancelarBtn.addEventListener('click', () => {
+      modal.classList.add('hidden');
+      contactoActual = null;
+    });
+
+    enviarBtn.addEventListener('click', () => {
+      const mensaje = mensajeTextarea.value.trim();
+      if (!mensaje) {
+        alert('Por favor escribí un mensaje antes de enviar.');
+        return;
+      }
+      alert(`Mensaje enviado a ${contactoActual}:\n\n${mensaje}`);
+      modal.classList.add('hidden');
+      contactoActual = null;
+    });
+
+    document.getElementById('filter-date').addEventListener('change', e => {
+      const fechaFiltro = e.target.value;
+      document.querySelectorAll('main > div.bg-white').forEach(card => {
+        const fechaTexto = card.querySelector('div > div.text-sm.text-gray-500 > p:first-child').textContent.replace('📅 ', '');
+        const [dia, mes, anio] = fechaTexto.split('/');
+        const fechaCard = `${anio}-${mes.padStart(2,'0')}-${dia.padStart(2,'0')}`;
+        card.style.display = fechaFiltro === '' || fechaCard === fechaFiltro ? 'flex' : 'none';
+      });
+    });
+  </script>
+
+</body>
+</html>

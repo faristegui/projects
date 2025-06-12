@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Listado de Inmobiliarias</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+  <!-- Barra superior fija -->
+  <header class="sticky top-0 bg-white shadow p-4 flex flex-wrap items-center justify-between gap-4 z-10">
+    <h1 class="text-2xl font-semibold">🏢 Inmobiliarias</h1>
+
+    <div class="flex items-center gap-2 flex-wrap w-full sm:w-auto">
+      <input type="text" id="busqueda" placeholder="Buscar por nombre o responsable..." class="border border-gray-300 rounded px-4 py-2 text-sm w-full sm:w-80" />
+      <button onclick="filtrarInmobiliarias()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm">
+        🔍 Buscar
+      </button>
+    </div>
+  </header>
+
+  <!-- Listado de inmobiliarias -->
+  <main class="p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="listaInmobiliarias">
+
+    <!-- Card ejemplo -->
+    <div class="bg-white rounded-lg shadow p-4 space-y-2 inmobiliaria">
+    <!-- Simulamos el logo -->
+    <div class="w-full h-20 bg-gradient-to-r from-indigo-500 to-blue-500 rounded text-white flex items-center justify-center text-lg font-bold tracking-wide">
+        Inmo Palermo
+    </div>
+
+    <h2 class="text-lg font-semibold">Inmobiliaria Palermo</h2>
+    <p class="text-sm text-gray-700">📞 (011) 4567-1234</p>
+    <p class="text-sm text-gray-700">👤 Responsable: Laura Gómez</p>
+    <p class="text-sm text-gray-500">✉️ contacto@palermoinmo.com</p>
+    </div>
+
+
+    <div class="bg-white rounded-lg shadow p-4 space-y-2 inmobiliaria">
+        <div class="w-full h-20 bg-gradient-to-r from-pink-500 to-red-500 rounded text-white flex items-center justify-center text-lg font-bold">
+        Urbanos RE
+        </div>
+      <h2 class="text-lg font-semibold">Urbanos Real Estate</h2>
+      <p class="text-sm text-gray-700">📞 (011) 4312-8765</p>
+      <p class="text-sm text-gray-700">👤 Responsable: Martín Fernández</p>
+      <p class="text-sm text-gray-500">✉️ info@urbanos.com.ar</p>
+    </div>
+
+    <div class="bg-white rounded-lg shadow p-4 space-y-2 inmobiliaria">
+    <div class="w-full h-20 bg-gradient-to-r from-green-500 to-lime-500 rounded text-white flex items-center justify-center text-lg font-bold">
+    CABA Prop
+    </div>
+      <h2 class="text-lg font-semibold">CABA Propiedades</h2>
+      <p class="text-sm text-gray-700">📞 (011) 4000-7777</p>
+      <p class="text-sm text-gray-700">👤 Responsable: Silvia Torres</p>
+      <p class="text-sm text-gray-500">✉️ silvia@caba-prop.com</p>
+    </div>
+
+    <!-- Agregás más acá... -->
+
+  </main>
+
+  <script>
+    function filtrarInmobiliarias() {
+      const texto = document.getElementById('busqueda').value.toLowerCase();
+      const cards = document.querySelectorAll('.inmobiliaria');
+
+      cards.forEach(card => {
+        const contenido = card.textContent.toLowerCase();
+        card.style.display = contenido.includes(texto) ? 'block' : 'none';
+      });
+    }
+  </script>
+
+</body>
+</html>

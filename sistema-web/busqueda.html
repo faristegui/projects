@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Buscar propiedades</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+  <!-- Barra superior sticky con pestañas -->
+  <header class="sticky top-0 bg-white shadow p-4 flex flex-wrap items-center justify-between gap-4 z-10">
+    <h1 class="text-2xl font-semibold">🏠 Búsqueda</h1>
+
+    <div class="flex items-center gap-2 flex-wrap w-full sm:w-auto">
+      <button class="tab-button text-sm px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700" onclick="mostrarVista('busquedaView', this)">
+        🔍 Búsqueda
+      </button>
+      <button class="tab-button text-sm px-4 py-2 rounded bg-gray-200 text-gray-800 hover:bg-gray-300" onclick="mostrarVista('resultadoView', this)">
+        📋 Resultado
+      </button>
+      <button class="tab-button text-sm px-4 py-2 rounded bg-gray-200 text-gray-800 hover:bg-gray-300" onclick="mostrarVista('fichaView', this)">
+        📄 Ficha
+      </button>
+    </div>
+  </header>
+
+  <!-- Contenido principal -->
+  <main class="max-w-6xl mx-auto p-6 bg-white shadow rounded-lg mt-6">
+
+    <!-- Vista Búsqueda -->
+    <div id="busquedaView" class="vista">
+      <form id="busquedaForm" class="space-y-8">
+
+        <!-- Tipo de propiedad -->
+        <section class="border-t border-gray-300 pt-2">
+          <h2 class="text-[10px] text-gray-500 font-medium mb-3 uppercase tracking-wide pb-1">Tipo de propiedad</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div>
+              <label for="producto" class="block text-xs font-medium text-gray-700">Tipo de producto</label>
+              <select id="producto" class="form-select"></select>
+            </div>
+            <div>
+              <label for="subproducto" class="block text-xs font-medium text-gray-700">Subtipo de producto</label>
+              <select id="subproducto" class="form-select"></select>
+            </div>
+          </div>
+        </section>
+
+        <!-- Precio y operación -->
+        <section class="border-t border-gray-300 pt-2">
+          <h2 class="text-[10px] text-gray-500 font-medium mb-3 uppercase tracking-wide pb-1">Precio y operación</h2>
+          <div class="grid grid-cols-4 gap-6">
+            <div>
+              <label for="operacion" class="block text-xs font-medium text-gray-700">Operación</label>
+              <select id="operacion" class="form-select">
+                <option value="">Seleccionar</option>
+                <option value="1">Venta</option>
+                <option value="2">Alquiler</option>
+              </select>
+            </div>
+            <div>
+              <label for="moneda" class="block text-xs font-medium text-gray-700">Moneda</label>
+              <select id="moneda" class="form-select">
+                <option value="">$ / U$S</option>
+                <option value="1">$</option>
+                <option value="2">U$S</option>
+              </select>
+            </div>
+            <div>
+              <label for="precioMin" class="block text-xs font-medium text-gray-700">Precio mínimo</label>
+              <input type="text" id="precioMin" class="form-input" />
+            </div>
+            <div>
+              <label for="precioMax" class="block text-xs font-medium text-gray-700">Precio máximo</label>
+              <input type="text" id="precioMax" class="form-input" />
+            </div>
+          </div>
+        </section>
+
+        <!-- Ubicación -->
+        <section class="border-t border-gray-300 pt-2">
+          <h2 class="text-[10px] text-gray-500 font-medium mb-3 uppercase tracking-wide pb-1">Ubicación</h2>
+          <div class="grid grid-cols-2 gap-6">
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label for="pais" class="block text-xs font-medium text-gray-700">País</label>
+                <select id="pais" class="form-select"></select>
+              </div>
+              <div>
+                <label for="provincia" class="block text-xs font-medium text-gray-700">Provincia</label>
+                <select id="provincia" class="form-select"></select>
+              </div>
+            </div>
+            <div>
+              <label for="ubicacionBuscar" class="block text-xs font-medium text-gray-700">Ubicación</label>
+              <input type="text" id="ubicacionBuscar" placeholder="Ej: Palermo, CABA" class="form-input" />
+            </div>
+          </div>
+        </section>
+
+        <!-- Otros filtros -->
+        <section class="border-t border-gray-300 pt-2">
+          <h2 class="text-[10px] text-gray-500 font-medium mb-3 uppercase tracking-wide pb-1">Otros filtros</h2>
+          <div class="flex flex-col md:flex-row md:items-center md:space-x-4">
+            <div class="flex items-center mb-4 md:mb-0 md:flex-1">
+              <input id="soloMisOfertas" type="checkbox" class="mr-2 rounded border-gray-300 h-5 w-5" />
+              <label for="soloMisOfertas" class="text-sm text-gray-700">Solo mis ofertas</label>
+            </div>
+            <div class="flex flex-1 space-x-2">
+              <div class="flex-1">
+                <label for="codigoBuscar" class="block text-xs font-medium text-gray-700">Buscar por código</label>
+                <input type="text" id="codigoBuscar" class="form-input" />
+              </div>
+              <button type="button" onclick="realizarBusquedaAvanzada()" class="self-end px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm font-medium shadow flex items-center gap-2 mt-6 md:mt-7">
+                🔍 Buscar
+              </button>
+            </div>
+          </div>
+        </section>
+
+      </form>
+    </div>
+
+    <!-- Vista Resultado -->
+    <div id="resultadoView" class="vista hidden max-w-6xl mx-auto mt-6">
+    <div id="listaResultados" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Cards se insertan acá -->
+    </div>
+    </div>
+
+    <!-- Vista Ficha -->
+    <div id="fichaView" class="vista hidden">
+      <p class="text-gray-600">📄 Aquí va la ficha de la propiedad seleccionada.</p>
+    </div>
+
+  </main>
+
+  <script>
+    function mostrarVista(id, btn) {
+      document.querySelectorAll('.vista').forEach(div => div.classList.add('hidden'));
+      document.getElementById(id).classList.remove('hidden');
+
+      document.querySelectorAll('.tab-button').forEach(b => {
+        b.classList.remove('bg-blue-600', 'text-white');
+        b.classList.add('bg-gray-200', 'text-gray-800');
+      });
+      btn.classList.add('bg-blue-600', 'text-white');
+      btn.classList.remove('bg-gray-200', 'text-gray-800');
+    }
+
+    function realizarBusquedaAvanzada() {
+        mostrarVista('resultadoView', document.querySelectorAll('.tab-button')[1]); // activar pestaña Resultado
+
+        const contenedor = document.getElementById('listaResultados');
+        contenedor.innerHTML = `
+            <div class="col-span-full flex justify-center items-center p-10">
+            <svg class="animate-spin h-8 w-8 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+            </svg>
+            </div>
+        `;
+
+        // Simular demora de búsqueda (p.ej. 1 segundo)
+        setTimeout(() => {
+            const resultados = [
+            {
+                imagen: "https://www.researchgate.net/profile/Linda-Oguri/publication/334242902/figure/fig2/AS:1103135162548231@1640019326187/Figura-4-A-la-izquierda-se-muestra-el-interior-de-la-Casa-Moeller-de-Adolf-A-la-derecha.jpg",
+                titulo: "Casa en venta",
+                ubicacion: "Palermo, CABA",
+                precio: "U$S 250.000",
+                descripcion: "Hermosa casa de 3 ambientes con patio y cochera."
+            },
+            {
+                imagen: "https://hogarencuba.com/assets/thumbnails/256x256/323.webp",
+                titulo: "Departamento en alquiler",
+                ubicacion: "Recoleta, CABA",
+                precio: "$ 450.000 / mes",
+                descripcion: "Moderno departamento amueblado de 2 ambientes."
+            },
+            {
+                imagen: "https://hogarencuba.com/assets/thumbnails/256x256/1729126027-9jA5A84w.webp",
+                titulo: "Departamento en venta",
+                ubicacion: "Recoleta, CABA",
+                precio: "U$S 450.000",
+                descripcion: "Moderno departamento amueblado de 2 ambientes."
+            },
+            {
+                imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8BTlMAs_MZNg6xnj3sQUIx96BpyM0dvgVV-wq1QmmJmV4bco9tFvTm3RbLNOZchEygcw&usqp=CAU",
+                titulo: "Casa en alquiler",
+                ubicacion: "Recoleta, CABA",
+                precio: "$ 450.000 / mes",
+                descripcion: "Moderno departamento amueblado de 2 ambientes."
+            }
+            ];
+
+            contenedor.innerHTML = ""; // limpiar spinner
+
+            resultados.forEach(prop => {
+            const card = document.createElement('div');
+            card.className = "flex bg-gray-100 rounded-lg shadow p-2 gap-4";
+
+            card.innerHTML = `
+                <img src="${prop.imagen}" alt="${prop.titulo}" class="w-28 h-20 object-cover rounded border" />
+                <div class="flex flex-col justify-between">
+                <h3 class="text-lg font-semibold text-blue-800">${prop.titulo}</h3>
+                <p class="text-sm text-gray-700">📍 ${prop.ubicacion}</p>
+                <p class="text-sm text-green-700 font-bold">${prop.precio}</p>
+                <p class="text-sm text-gray-600 mt-1">${prop.descripcion}</p>
+                </div>
+            `;
+
+            contenedor.appendChild(card);
+            });
+        }, 1000);
+        }
+
+    // Aplicar estilos a select e input
+    window.onload = () => {
+      document.querySelectorAll('.form-select').forEach(el =>
+        el.classList.add(
+          'mt-1', 'block', 'w-full', 'rounded', 'border', 'border-gray-300', 'bg-gray-100',
+          'text-gray-900', 'shadow-sm', 'h-8', 'px-3', 'py-1.5', 'focus:outline-none',
+          'focus:ring-2', 'focus:ring-blue-500', 'focus:border-blue-500', 'transition'
+        )
+      );
+      document.querySelectorAll('.form-input').forEach(el =>
+        el.classList.add(
+          'mt-1', 'block', 'w-full', 'rounded', 'border', 'border-gray-300', 'bg-gray-100',
+          'text-gray-900', 'shadow-sm', 'h-8', 'px-3', 'py-1.5', 'focus:outline-none',
+          'focus:ring-2', 'focus:ring-blue-500', 'focus:border-blue-500', 'transition'
+        )
+      );
+    };
+  </script>
+
+</body>
+</html>
