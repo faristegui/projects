@@ -9,7 +9,7 @@
 | Proyecto       | Descripción                      | Demo en Vivo                     |
 | -------------- | ------------------------------- | ------------------------------- |
 | 🌟 **Sitio web de inmobiliaria** | Sitio web de inmobiliaria | [Ver en Vercel 🔗](https://tu-link1.vercel.app) |
-| 🎯 **Sistema de gestión** | Sistema de gestión inmobiliaria  | [Ver en Vercel 🔗](https://tu-link2.vercel.app) |
+| 🎯 **Sistema de gestión** | Sistema de gestión inmobiliaria  | [Ver en Vercel 🔗](https://projects-amber-ten.vercel.app/) |
 | 🖌️ **Generador de códigos QR** | Simple pero efectivo generador de códigos QR  | [Ver en Vercel 🔗](https://tu-link3.vercel.app) |
 
 ---
