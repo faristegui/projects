@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Buscar propiedades</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </head>
 <body class="bg-gray-100 text-gray-800">
 
@@ -131,7 +136,7 @@
 
     <!-- Vista Ficha -->
     <div id="fichaView" class="vista hidden">
-      <p class="text-gray-600">📄 Aquí va la ficha de la propiedad seleccionada.</p>
+      <div id="detalleFicha" class="p-4 space-y-4"></div>
     </div>
 
   </main>
@@ -150,71 +155,158 @@
     }
 
     function realizarBusquedaAvanzada() {
-        mostrarVista('resultadoView', document.querySelectorAll('.tab-button')[1]); // activar pestaña Resultado
+      mostrarVista('resultadoView', document.querySelectorAll('.tab-button')[1]);
 
-        const contenedor = document.getElementById('listaResultados');
-        contenedor.innerHTML = `
-            <div class="col-span-full flex justify-center items-center p-10">
-            <svg class="animate-spin h-8 w-8 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
-            </svg>
+      const contenedor = document.getElementById('listaResultados');
+      contenedor.innerHTML = `
+        <div class="col-span-full flex justify-center items-center p-10">
+          <svg class="animate-spin h-8 w-8 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+          </svg>
+        </div>
+      `;
+
+      setTimeout(() => {
+        const resultados = [
+          {
+            imagen: "https://www.researchgate.net/profile/Linda-Oguri/publication/334242902/figure/fig2/AS:1103135162548231@1640019326187/Figura-4-A-la-izquierda-se-muestra-el-interior-de-la-Casa-Moeller-de-Adolf-A-la-derecha.jpg",
+            titulo: "Casa en venta",
+            ubicacion: "Palermo, CABA",
+            precio: "U$S 250.000",
+            descripcion: "Hermosa casa de 3 ambientes con patio y cochera."
+          },
+          {
+            imagen: "https://hogarencuba.com/assets/thumbnails/256x256/323.webp",
+            titulo: "Departamento en alquiler",
+            ubicacion: "Recoleta, CABA",
+            precio: "$ 450.000 / mes",
+            descripcion: "Moderno departamento amueblado de 2 ambientes."
+          }
+          // ... más propiedades si querés
+        ];
+
+        contenedor.innerHTML = "";
+
+        resultados.forEach(prop => {
+          const card = document.createElement('div');
+          card.className = "flex bg-gray-100 rounded-lg shadow p-2 gap-4 cursor-pointer hover:bg-gray-200 transition";
+
+          card.innerHTML = `
+            <img src="${prop.imagen}" alt="${prop.titulo}" class="w-28 h-20 object-cover rounded border" />
+            <div class="flex flex-col justify-between">
+              <h3 class="text-lg font-semibold text-blue-800">${prop.titulo}</h3>
+              <p class="text-sm text-gray-700">📍 ${prop.ubicacion}</p>
+              <p class="text-sm text-green-700 font-bold">${prop.precio}</p>
+              <p class="text-sm text-gray-600 mt-1">${prop.descripcion}</p>
             </div>
-        `;
+          `;
 
-        // Simular demora de búsqueda (p.ej. 1 segundo)
-        setTimeout(() => {
-            const resultados = [
-            {
-                imagen: "https://www.researchgate.net/profile/Linda-Oguri/publication/334242902/figure/fig2/AS:1103135162548231@1640019326187/Figura-4-A-la-izquierda-se-muestra-el-interior-de-la-Casa-Moeller-de-Adolf-A-la-derecha.jpg",
-                titulo: "Casa en venta",
-                ubicacion: "Palermo, CABA",
-                precio: "U$S 250.000",
-                descripcion: "Hermosa casa de 3 ambientes con patio y cochera."
-            },
-            {
-                imagen: "https://hogarencuba.com/assets/thumbnails/256x256/323.webp",
-                titulo: "Departamento en alquiler",
-                ubicacion: "Recoleta, CABA",
-                precio: "$ 450.000 / mes",
-                descripcion: "Moderno departamento amueblado de 2 ambientes."
-            },
-            {
-                imagen: "https://hogarencuba.com/assets/thumbnails/256x256/1729126027-9jA5A84w.webp",
-                titulo: "Departamento en venta",
-                ubicacion: "Recoleta, CABA",
-                precio: "U$S 450.000",
-                descripcion: "Moderno departamento amueblado de 2 ambientes."
-            },
-            {
-                imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8BTlMAs_MZNg6xnj3sQUIx96BpyM0dvgVV-wq1QmmJmV4bco9tFvTm3RbLNOZchEygcw&usqp=CAU",
-                titulo: "Casa en alquiler",
-                ubicacion: "Recoleta, CABA",
-                precio: "$ 450.000 / mes",
-                descripcion: "Moderno departamento amueblado de 2 ambientes."
-            }
-            ];
+          // CLICK en la card: mostrar ficha
+          card.addEventListener('click', () => {
+            mostrarVista('fichaView', document.querySelectorAll('.tab-button')[2]);
 
-            contenedor.innerHTML = ""; // limpiar spinner
+              document.getElementById('detalleFicha').innerHTML = `
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-center">
+                <!-- Galería Swiper -->
+                <div class="swiper w-full h-64 sm:h-80 md:h-96 rounded-lg shadow relative">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide bg-gray-200 rounded-lg flex items-center justify-center">
+                    <img
+                      src="https://bihomes.es/app/uploads/2022/10/diseno-interiores-salon-casa.jpg"
+                      alt="${prop.titulo}"
+                      class="w-full max-h-full object-contain rounded-lg"
+                    />
+                  </div>
+                  <div class="swiper-slide bg-gray-200 rounded-lg flex items-center justify-center">
+                    <img
+                      src="https://paduamateriales.com/wp-content/uploads/como-hacer-que-un-techo-bajo-se-vea-mas-alto.webp"
+                      alt="${prop.titulo}"
+                      class="w-full max-h-full object-contain rounded-lg"
+                    />
+                  </div>
+                  <div class="swiper-slide bg-gray-200 rounded-lg flex items-center justify-center">
+                    <img
+                      src="https://interioristica.com/wp-content/uploads/2023/08/diseno-de-interiores-casas-modernas.jpg"
+                      alt="${prop.titulo}"
+                      class="w-full max-h-full object-contain rounded-lg"
+                    />
+                  </div>
 
-            resultados.forEach(prop => {
-            const card = document.createElement('div');
-            card.className = "flex bg-gray-100 rounded-lg shadow p-2 gap-4";
-
-            card.innerHTML = `
-                <img src="${prop.imagen}" alt="${prop.titulo}" class="w-28 h-20 object-cover rounded border" />
-                <div class="flex flex-col justify-between">
-                <h3 class="text-lg font-semibold text-blue-800">${prop.titulo}</h3>
-                <p class="text-sm text-gray-700">📍 ${prop.ubicacion}</p>
-                <p class="text-sm text-green-700 font-bold">${prop.precio}</p>
-                <p class="text-sm text-gray-600 mt-1">${prop.descripcion}</p>
+                  </div>
+                  <!-- Controles -->
+                  <div class="swiper-button-next"></div>
+                  <div class="swiper-button-prev"></div>
+                  <div class="swiper-pagination"></div>
                 </div>
+
+                <!-- Info -->
+                <div class="space-y-4">
+                  <h2 class="text-2xl font-bold text-blue-800">${prop.titulo}</h2>
+                  <p class="text-gray-600 text-sm">📍 ${prop.ubicacion}</p>
+                  <p class="text-green-700 text-xl font-bold">${prop.precio}</p>
+                </div>
+              </div>
+
+              <!-- Descripción -->
+              <div class="mt-8 pt-8">
+                <h3 class="text-xl font-semibold text-gray-800 mb-1">Descripción</h3>
+                <div class="border-b border-gray-300 pb-4 mb-6">
+                  <p class="text-sm text-gray-700">${prop.descripcion}</p>
+                </div>
+              </div>
+
+              <!-- Características -->
+              <div class="mb-6 pt-8">
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Características</h3>
+                <ul class="grid grid-cols-2 md:grid-cols-3 gap-2 text-sm text-gray-700 list-disc list-inside">
+                  <li>3 Ambientes</li>
+                  <li>2 Dormitorios</li>
+                  <li>1 Baño</li>
+                  <li>Cochera</li>
+                  <li>Patio</li>
+                  <li>Apto crédito</li>
+                </ul>
+              </div>
+
+              <!-- Mapa -->
+              <div class="mb-10 pt-8">
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Ubicación</h3>
+                <div class="w-full h-64 bg-gray-200 rounded overflow-hidden shadow">
+                  <iframe
+                    src="https://maps.google.com/maps?q=Palermo,%20CABA&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                    class="w-full h-full border-0"
+                    allowfullscreen=""
+                    loading="lazy"
+                  ></iframe>
+                </div>
+              </div>
             `;
 
-            contenedor.appendChild(card);
-            });
-        }, 1000);
-        }
+            // Iniciar Swiper después de renderizar
+            setTimeout(() => {
+              const swiper = new Swiper('.swiper', {
+                loop: true,
+                pagination: {
+                  el: '.swiper-pagination',
+                  clickable: true
+                },
+                navigation: {
+                  nextEl: '.swiper-button-next',
+                  prevEl: '.swiper-button-prev'
+                }
+              });
+            }, 0);
+
+
+
+          });
+
+          contenedor.appendChild(card);
+        });
+      }, 1000);
+    }
+
 
     // Aplicar estilos a select e input
     window.onload = () => {
