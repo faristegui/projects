@@ -2,79 +2,56 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sistema</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<style>
-    /* Fondo claro para contenido, oscuro para sidebar */
-    body {
-      font-family: sans-serif;
-    }
-  </style>
 </head>
-<body class="flex">
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
 
-  <!-- Sidebar -->
-  <aside class="w-64 h-screen bg-gray-900 text-white p-4 flex flex-col justify-between fixed left-0 top-0">
-    <!-- Logo -->
-    <div>
+  <div class="w-full max-w-sm bg-white rounded-lg shadow-md p-8 space-y-6">
+
+    <!-- Logo arriba -->
+    <div class="flex justify-center mb-6">
       <div class="flex items-center justify-center h-24">
         <img src="https://thumbs.dreamstime.com/b/logo-casa-arquitectura-vivir-logotipo-de-construcci%C3%B3n-vector-para-empresas-165826974.jpg" alt="Logo" class="max-h-24 rounded-lg shadow-lg border border-white" />
       </div>
-
-      <!-- Menú -->
-      <nav class="mt-6 space-y-2">
-        <a href="#" onclick="loadPage('dashboard.html')" class="flex items-center gap-2 p-2 rounded hover:bg-gray-700">
-          <i class="fa fa-line-chart"></i> <span>Inicio</span>
-        </a>
-        <a href="#" onclick="loadPage('busqueda.html')" class="flex items-center gap-2 p-2 rounded hover:bg-gray-700">
-          <i class="fa fa-search"></i> <span>Búsqueda</span>
-        </a>
-        <a href="#" onclick="loadPage('propiedades.html')" class="flex items-center gap-2 p-2 rounded hover:bg-gray-700">
-          <i class="fa fa-building"></i> <span>Mis Propiedades</span>
-        </a>
-        <a href="#" onclick="loadPage('inmobiliarias.html')" class="flex items-center gap-2 p-2 rounded hover:bg-gray-700">
-          <i class="fa fa-home"></i> <span>Inmobiliarias</span>
-        </a>
-        <a href="#" onclick="loadPage('contactos.html')" class="flex items-center gap-2 p-2 rounded hover:bg-gray-700">
-          <i class="fa fa-users"></i> <span>Contactos</span>
-        </a>
-        <a href="#" onclick="loadPage('servicios.html')" class="flex items-center gap-2 p-2 rounded hover:bg-gray-700">
-          <i class="fa fa-cog"></i> <span>Servicios</span>
-        </a>
-      </nav>
     </div>
 
-   <div class="mt-auto p-4 border-t border-gray-700 text-gray-300 flex flex-col items-center space-y-2">
-    <div class="flex items-center gap-2">
-        <i class="fa fa-user-circle text-xl"></i>
-        <span class="text-sm font-medium">juan.perez@example.com</span>
-    </div>
-    <button class="flex items-center gap-2 bg-red-600 hover:bg-red-700 px-4 py-2 rounded text-white text-sm w-full justify-center">
-        <i class="fa fa-sign-out-alt"></i>
-        Cerrar sesión
-    </button>
-    </div>
-  </aside>
+    <!-- Formulario -->
+    <form class="space-y-5" onsubmit="event.preventDefault(); window.location.href = 'inicio.html';">
+      <div>
+        <label for="usuario" class="block text-sm font-medium text-gray-700">Usuario</label>
+        <input
+          id="usuario"
+          name="usuario"
+          type="text"
+          required
+          class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          placeholder="Tu usuario"
+        />
+      </div>
 
-  <!-- Contenido principal -->
-  <main class="ml-64 flex-1 h-screen bg-white">
-    <iframe id="contentFrame" src="dashboard.html" class="w-full h-full border-0"></iframe>
-  </main>
+      <div>
+        <label for="password" class="block text-sm font-medium text-gray-700">Contraseña</label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          required
+          class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          placeholder="Tu contraseña"
+        />
+      </div>
 
-  <!-- Scripts -->
-  <script>
-    function loadPage(url) {
-      document.getElementById('contentFrame').src = url;
-    }
+      <button
+        type="submit"
+        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-md transition"
+      >
+        Iniciar sesión
+      </button>
+    </form>
 
-    function cerrarSesion() {
-      alert("Sesión cerrada.");
-      // Redirigir si hace falta: window.location.href = '/login';
-    }
-  </script>
+  </div>
 
 </body>
 </html>

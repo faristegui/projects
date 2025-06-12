@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MiniApp de Pelis</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = { darkMode: 'class' };
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .active { color: #2563eb; }
+  </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white h-screen flex flex-col">
+
+  <!-- VISTAS -->
+  <div id="views" class="flex-1 overflow-y-auto pb-20">
+    <!-- INICIO -->
+    <div id="view-home" class="p-4 space-y-4" style="display: block;">
+      <h1 class="text-2xl font-bold">🎬 Películas populares</h1>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <!-- Cards -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
+          <img src="https://image.tmdb.org/t/p/w300/8Y43POKjjKDGI9MH89NW0NAzzp8.jpg" alt="Fast X" class="w-full h-40 object-cover" />
+          <div class="p-2">
+            <h2 class="text-sm font-semibold">Fast X</h2>
+            <p class="text-xs text-gray-500 dark:text-gray-400">Acción</p>
+          </div>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
+          <img src="https://image.tmdb.org/t/p/w300/5YZbUmjbMa3ClvSW1Wj3D6XGolb.jpg" alt="Guardianes 3" class="w-full h-40 object-cover" />
+          <div class="p-2">
+            <h2 class="text-sm font-semibold">Guardianes 3</h2>
+            <p class="text-xs text-gray-500 dark:text-gray-400">Aventura</p>
+          </div>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
+          <img src="https://image.tmdb.org/t/p/w300/t5zCBSB5xMDKcDqe91qahCOUYVV.jpg" alt="Dune 2" class="w-full h-40 object-cover" />
+          <div class="p-2">
+            <h2 class="text-sm font-semibold">Dune 2</h2>
+            <p class="text-xs text-gray-500 dark:text-gray-400">Sci-Fi</p>
+          </div>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
+          <img src="https://image.tmdb.org/t/p/w300/wjOHjWCUE0YzDiEzKv8AfqHj3ir.jpg" alt="John Wick 4" class="w-full h-40 object-cover" />
+          <div class="p-2">
+            <h2 class="text-sm font-semibold">John Wick 4</h2>
+            <p class="text-xs text-gray-500 dark:text-gray-400">Acción</p>
+          </div>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
+          <img src="https://image.tmdb.org/t/p/w300/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg" alt="Spider-Man" class="w-full h-40 object-cover" />
+          <div class="p-2">
+            <h2 class="text-sm font-semibold">Spider-Man</h2>
+            <p class="text-xs text-gray-500 dark:text-gray-400">Superhéroes</p>
+          </div>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
+          <img src="https://image.tmdb.org/t/p/w300/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg" alt="Barbie" class="w-full h-40 object-cover" />
+          <div class="p-2">
+            <h2 class="text-sm font-semibold">Barbie</h2>
+            <p class="text-xs text-gray-500 dark:text-gray-400">Comedia</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="view-search" class="p-4 space-y-4 hidden">
+        <h1 class="text-2xl font-bold">🔎 Buscar</h1>
+        <input type="text" id="searchInput" placeholder="Buscar películas..." class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800" />
+        <button onclick="buscarPeliculas()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition w-full">Buscar</button>
+        <p class="text-gray-500 dark:text-gray-400">Escribí el nombre de una película para comenzar.</p>
+        
+        <div id="resultados" class="grid grid-cols-2 gap-4 pt-4 hidden">
+            <!-- Resultados se agregarán acá -->
+        </div>
+    </div>
+
+    <!-- NOTIFICACIONES -->
+    <div id="view-notifications" class="p-4 space-y-4 hidden">
+      <h1 class="text-2xl font-bold">🔔 Notificaciones</h1>
+      <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
+        <p class="text-sm">🎉 ¡Nueva película agregada: <strong>Dune 2</strong>!</p>
+      </div>
+      <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
+        <p class="text-sm">🔥 Recomendación personalizada: <strong>Oppenheimer</strong>.</p>
+      </div>
+    </div>
+
+    <!-- CONFIGURACIÓN -->
+    <div id="view-settings" class="p-4 space-y-4 hidden">
+      <h1 class="text-2xl font-bold">⚙️ Configuración</h1>
+      <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow space-y-4">
+        <div class="flex justify-between items-center">
+          <span class="text-sm">🌙 Modo oscuro</span>
+          <label class="inline-flex items-center cursor-pointer">
+            <input id="darkToggle" type="checkbox" class="sr-only" />
+            <div class="w-11 h-6 bg-gray-200 dark:bg-gray-600 peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:bg-blue-600 relative after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full"></div>
+          </label>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-sm">🔔 Notificaciones Push</span>
+          <button class="text-blue-600 text-sm font-semibold">Activadas</button>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-sm">🧪 Beta Features</span>
+          <button class="text-gray-500 text-sm font-medium">Desactivado</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ <!-- MENÚ INFERIOR -->
+<nav class="bg-gray-800 border-t border-gray-700 fixed bottom-0 left-0 right-0 h-16 flex justify-around items-center z-50 text-gray-400">
+  <button onclick="showView('home', this)" class="nav-btn flex flex-col items-center hover:text-indigo-400">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+      <polyline points="9 22 9 12 15 12 15 22"></polyline>
+    </svg>
+    <span class="text-xs font-medium">Inicio</span>
+  </button>
+
+  <button onclick="showView('search', this)" class="nav-btn flex flex-col items-center hover:text-indigo-400">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <circle cx="11" cy="11" r="8"></circle>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+    </svg>
+    <span class="text-xs font-medium">Buscar</span>
+  </button>
+
+  <button onclick="showView('notifications', this)" class="nav-btn flex flex-col items-center hover:text-indigo-400">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path d="M15 17h5l-1.41-1.41A2.03 2.03 0 0 1 18 14.16V11a6 6 0 1 0-12 0v3.16c0 .54-.21 1.05-.59 1.44L4 17h5m6 0v1a3 3 0 1 1-6 0v-1"></path>
+    </svg>
+    <span class="text-xs font-medium">Avisos</span>
+  </button>
+
+  <button onclick="showView('settings', this)" class="nav-btn flex flex-col items-center hover:text-indigo-400">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="3"></circle>
+      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33h-.09a1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51h-.09a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82v-.09a1.65 1.65 0 0 0-1-1.51H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1v-.09a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.09A1.65 1.65 0 0 0 9 3h6a1.65 1.65 0 0 0 1.51 1h.09a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.09a1.65 1.65 0 0 0 1 1.51z"></path>
+    </svg>
+    <span class="text-xs font-medium">Config</span>
+  </button>
+</nav>
+
+
+  <script>
+    const views = ['home', 'search', 'notifications', 'settings'];
+    const buttons = document.querySelectorAll('.nav-btn');
+
+    function showView(view, el) {
+      views.forEach(v => {
+        document.getElementById('view-' + v).style.display = v === view ? 'block' : 'none';
+      });
+      buttons.forEach(b => b.classList.remove('text-blue-600'));
+      el.classList.add('text-blue-600');
+    }
+
+    function buscarPeliculas() {
+  const resultados = document.getElementById('resultados');
+  resultados.innerHTML = ''; // Limpiar anteriores
+  resultados.classList.remove('hidden');
+
+  const pelis = [
+    { titulo: 'Oppenheimer', genero: 'Drama', img: 'https://image.tmdb.org/t/p/w300/ptpr0kGAckfQkJeJIt8st5dglvd.jpg' },
+    { titulo: 'Mario Bros', genero: 'Animación', img: 'https://image.tmdb.org/t/p/w300/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg' }
+  ];
+
+  pelis.forEach(peli => {
+    const card = `
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
+        <img src="${peli.img}" alt="${peli.titulo}" class="w-full h-40 object-cover" />
+        <div class="p-2">
+          <h2 class="text-sm font-semibold">${peli.titulo}</h2>
+          <p class="text-xs text-gray-500 dark:text-gray-400">${peli.genero}</p>
+        </div>
+      </div>
+    `;
+    resultados.innerHTML += card;
+  });
+}
+
+    // Dark mode toggle
+    const darkToggle = document.getElementById('darkToggle');
+    const html = document.documentElement;
+
+    darkToggle.checked = localStorage.getItem('darkMode') === 'true';
+    if (darkToggle.checked) html.classList.add('dark');
+
+    darkToggle.addEventListener('change', () => {
+      const enabled = darkToggle.checked;
+      html.classList.toggle('dark', enabled);
+      localStorage.setItem('darkMode', enabled);
+    });
+
+    // Set initial view
+    showView('home', buttons[0]);
+  </script>
+
+</body>
+</html>

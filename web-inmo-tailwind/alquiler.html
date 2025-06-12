@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Resultados - Inmobiliaria</title>
+
+  <!-- Cargar TailwindCSS con el CDN correcto -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- FontAwesome para los íconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body class="bg-gray-900 text-white font-sans">
+
+  <!-- Menú -->
+  <header class="bg-gray-800 fixed w-full z-10 shadow">
+    <nav class="container mx-auto flex justify-between items-center text-gray-300 py-6">
+    <div>
+        <img
+        src="https://www.halaxia.com/_next/image?url=https%3A%2F%2Fs3.amazonaws.com%2Fhalaxia-backend-production-storage%2Fenvironments%2F58d9530800d027b614d01c0315dcfec9__300x100.png&w=640&q=75"
+        alt="Logo Inmobiliaria"
+        class="h-14 rounded-lg"
+        />
+    </div>
+    <ul class="flex space-x-4">
+            <li><a href="index.html#inicio" class="hover:text-blue-400">Inicio</a></li>
+            <li><a href="index.html#quienes" class="hover:text-blue-400">Quiénes Somos</a></li>
+            <li><a href="index.html#servicios" class="hover:text-blue-400">Servicios</a></li>
+            <li><a href="alquiler.html" class="hover:text-blue-400">Alquiler</a></li>
+            <li><a href="venta.html" class="hover:text-blue-400">Venta</a></li>
+            <li><a href="index.html#ubicacion" class="hover:text-blue-400">Ubicación</a></li>
+            <li><a href="index.html#contacto" class="hover:text-blue-400">Contacto</a></li>
+        </ul>
+    </nav>
+  </header>
+
+  <!-- Contenedor principal -->
+  <main class="container mx-auto px-4 py-12 pt-32">
+    <h1 class="text-4xl font-bold mb-10 text-center flex items-center justify-center gap-3">
+      <i class="fas fa-home text-blue-400"></i>
+      Propiedades en alquiler
+    </h1>
+
+    <!-- Grid de resultados -->
+    <div class="grid md:grid-cols-3 gap-8">
+
+      <!-- Card 1 -->
+      <div class="bg-gray-800 rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-all duration-300">
+        <img
+          src="https://images.unsplash.com/photo-1570129477492-45c003edd2be"
+          alt="Casa moderna en Nordelta"
+          class="w-full h-60 object-cover rounded-lg mb-4"
+        />
+        <h3 class="text-xl font-semibold mb-3 text-white">Casa moderna en Nordelta</h3>
+
+        <div class="flex justify-center gap-6 mb-3 text-blue-400 text-lg">
+          <div class="flex items-center gap-1">
+            <i class="fas fa-home"></i>
+            <span>Casa</span>
+          </div>
+          <div class="flex items-center gap-1">
+            <i class="fas fa-bed"></i>
+            <span>4 Dorms</span>
+          </div>
+        </div>
+
+        <p class="text-2xl font-bold text-gray-200 flex items-center justify-center gap-2">
+          $350.000 USD
+        </p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bg-gray-800 rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-all duration-300">
+        <img
+          src="https://content.elmueble.com/medio/2022/08/03/ly-villa-costa-blanca-3_1d6d2821_2000x1334.jpg"
+          alt="Departamento en Recoleta"
+          class="w-full h-60 object-cover rounded-lg mb-4"
+        />
+        <h3 class="text-xl font-semibold mb-3 text-white">Departamento en Recoleta</h3>
+
+        <div class="flex justify-center gap-6 mb-3 text-blue-400 text-lg">
+          <div class="flex items-center gap-1">
+            <i class="fas fa-building"></i>
+            <span>Departamento</span>
+          </div>
+          <div class="flex items-center gap-1">
+            <i class="fas fa-bed"></i>
+            <span>2 Dorms</span>
+          </div>
+        </div>
+
+        <p class="text-2xl font-bold text-gray-200 flex items-center justify-center gap-2">
+          $190.000 USD
+        </p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bg-gray-800 rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-all duration-300">
+        <img
+          src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914"
+          alt="Casa con jardín en Córdoba"
+          class="w-full h-60 object-cover rounded-lg mb-4"
+        />
+        <h3 class="text-xl font-semibold mb-3 text-white">Casa con jardín en Córdoba</h3>
+
+        <div class="flex justify-center gap-6 mb-3 text-blue-400 text-lg">
+          <div class="flex items-center gap-1">
+            <i class="fas fa-home"></i>
+            <span>Casa</span>
+          </div>
+          <div class="flex items-center gap-1">
+            <i class="fas fa-bed"></i>
+            <span>3 Dorms</span>
+          </div>
+        </div>
+
+        <p class="text-2xl font-bold text-gray-200 flex items-center justify-center gap-2">
+          $280.000 USD
+        </p>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="bg-gray-800 rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-all duration-300">
+        <img
+          src="https://images.adsttc.com/media/images/623c/4fa0/3e4b/3145/3000/001b/large_jpg/_d_ambrosio_07._copy.jpg?1648119692"
+          alt="Departamento en Palermo"
+          class="w-full h-60 object-cover rounded-lg mb-4"
+        />
+        <h3 class="text-xl font-semibold mb-3 text-white">Departamento en Palermo</h3>
+
+        <div class="flex justify-center gap-6 mb-3 text-blue-400 text-lg">
+          <div class="flex items-center gap-1">
+            <i class="fas fa-building"></i>
+            <span>Departamento</span>
+          </div>
+          <div class="flex items-center gap-1">
+            <i class="fas fa-bed"></i>
+            <span>1 Dorm</span>
+          </div>
+        </div>
+
+        <p class="text-2xl font-bold text-gray-200 flex items-center justify-center gap-2">
+          $120.000 USD
+        </p>
+      </div>
+
+      <!-- Card 1 -->
+      <div class="bg-gray-800 rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-all duration-300">
+        <img
+          src="https://images.unsplash.com/photo-1570129477492-45c003edd2be"
+          alt="Casa moderna en Nordelta"
+          class="w-full h-60 object-cover rounded-lg mb-4"
+        />
+        <h3 class="text-xl font-semibold mb-3 text-white">Casa moderna en Nordelta</h3>
+
+        <div class="flex justify-center gap-6 mb-3 text-blue-400 text-lg">
+          <div class="flex items-center gap-1">
+            <i class="fas fa-home"></i>
+            <span>Casa</span>
+          </div>
+          <div class="flex items-center gap-1">
+            <i class="fas fa-bed"></i>
+            <span>4 Dorms</span>
+          </div>
+        </div>
+
+        <p class="text-2xl font-bold text-gray-200 flex items-center justify-center gap-2">
+          $350.000 USD
+        </p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bg-gray-800 rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-all duration-300">
+        <img
+          src="https://content.elmueble.com/medio/2022/08/03/ly-villa-costa-blanca-3_1d6d2821_2000x1334.jpg"
+          alt="Departamento en Recoleta"
+          class="w-full h-60 object-cover rounded-lg mb-4"
+        />
+        <h3 class="text-xl font-semibold mb-3 text-white">Departamento en Recoleta</h3>
+
+        <div class="flex justify-center gap-6 mb-3 text-blue-400 text-lg">
+          <div class="flex items-center gap-1">
+            <i class="fas fa-building"></i>
+            <span>Departamento</span>
+          </div>
+          <div class="flex items-center gap-1">
+            <i class="fas fa-bed"></i>
+            <span>2 Dorms</span>
+          </div>
+        </div>
+
+        <p class="text-2xl font-bold text-gray-200 flex items-center justify-center gap-2">
+          $190.000 USD
+        </p>
+      </div>
+
+
+
+    </div>
+  </main>
+
+  <!-- Footer igual que el index -->
+  <footer class="bg-gray-800 text-center py-6 mt-10 text-gray-400">
+    <p>© 2025 Inmobiliaria. Todos los derechos reservados.</p>
+  </footer>
+
+</body>
+</html>

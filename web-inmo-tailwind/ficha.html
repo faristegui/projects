@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Resultados - Inmobiliaria</title>
+
+  <!-- Cargar TailwindCSS con el CDN correcto -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- FontAwesome para los íconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body class="bg-gray-900 text-white font-sans">
+
+  <!-- Menú -->
+  <header class="bg-gray-800 fixed w-full z-10 shadow">
+    <nav class="container mx-auto flex justify-between items-center text-gray-300 py-6">
+    <div>
+        <img
+        src="https://www.halaxia.com/_next/image?url=https%3A%2F%2Fs3.amazonaws.com%2Fhalaxia-backend-production-storage%2Fenvironments%2F58d9530800d027b614d01c0315dcfec9__300x100.png&w=640&q=75"
+        alt="Logo Inmobiliaria"
+        class="h-14 rounded-lg"
+        />
+    </div>
+    <ul class="flex space-x-4">
+            <li><a href="index.html#inicio" class="hover:text-blue-400">Inicio</a></li>
+            <li><a href="index.html#quienes" class="hover:text-blue-400">Quiénes Somos</a></li>
+            <li><a href="index.html#servicios" class="hover:text-blue-400">Servicios</a></li>
+            <li><a href="alquiler.html" class="hover:text-blue-400">Alquiler</a></li>
+            <li><a href="venta.html" class="hover:text-blue-400">Venta</a></li>
+            <li><a href="index.html#ubicacion" class="hover:text-blue-400">Ubicación</a></li>
+            <li><a href="index.html#contacto" class="hover:text-blue-400">Contacto</a></li>
+        </ul>
+    </nav>
+  </header>
+
+  <!-- Contenedor principal -->
+  <main class="container mx-auto px-4 py-12 pt-32">
+
+  <div class="flex flex-col md:flex-row gap-12">
+
+    <!-- Galería de fotos -->
+    <div class="md:w-3/5 bg-gray-800 rounded-xl shadow-lg p-6">
+      <img
+        src="https://images.unsplash.com/photo-1600585154206-0c3b3ad1f3de"
+        alt="Foto principal"
+        class="rounded-lg w-full h-96 object-cover mb-6 border-4 border-gray-700"
+      />
+
+      <div class="grid grid-cols-3 gap-4">
+        <img
+          src="https://images.unsplash.com/photo-1572120360610-d971b9b7b6b2"
+          alt="Foto 2"
+          class="rounded-lg h-24 object-cover cursor-pointer hover:opacity-80 border-2 border-gray-700"
+        />
+        <img
+          src="https://images.unsplash.com/photo-1501183638714-0f4c0a3e8e5f"
+          alt="Foto 3"
+          class="rounded-lg h-24 object-cover cursor-pointer hover:opacity-80 border-2 border-gray-700"
+        />
+        <img
+          src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914"
+          alt="Foto 4"
+          class="rounded-lg h-24 object-cover cursor-pointer hover:opacity-80 border-2 border-gray-700"
+        />
+      </div>
+    </div>
+
+    <!-- Datos principales y contacto -->
+    <div class="md:w-2/5 bg-gray-800 rounded-xl shadow-lg p-6 space-y-8 text-center">
+      <!-- Precio -->
+      <div class="text-3xl font-extrabold text-yellow-400 gap-3">
+        <span> U$S 350,000</span>
+      </div>
+
+      <!-- Ubicación -->
+      <div class="gap-3 text-gray-300 text-lg">
+        <i class="fas fa-map-marker-alt text-red-500"></i>
+        <span>Nordelta, Buenos Aires, Argentina</span>
+      </div>
+
+      <!-- Contacto -->
+      <div>
+        <h3 class="text-xl font-semibold mb-4 border-b border-gray-700 pb-2">Contacto</h3>
+        <p class="gap-3 mb-3">
+          <i class="fas fa-user text-blue-400"></i> Juan Pérez
+        </p>
+        <p class="gap-3 mb-3">
+          <i class="fas fa-phone text-green-400"></i> +54 9 11 1234 5678
+        </p>
+        <p class="gap-3">
+          <i class="fab fa-whatsapp text-green-500"></i> +54 9 11 9876 5432
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Descripción -->
+  <section class="mt-16 container mx-auto px-4 text-gray-300">
+    <h2 class="text-2xl font-bold mb-4">Descripción</h2>
+    <p class="leading-relaxed text-justify">
+      Esta hermosa casa moderna en Nordelta ofrece un diseño espacioso con 4 dormitorios, 3 baños completos, y una gran cocina integrada. Cuenta con jardín y pileta, perfecta para familias que buscan comodidad y seguridad en un entorno natural.
+    </p>
+  </section>
+
+  <!-- Características -->
+  <section class="mt-16 container mx-auto px-4 bg-gray-800 rounded-xl p-8 text-gray-300">
+    <h2 class="text-2xl font-bold mb-6 text-gray-300">Características</h2>
+    <ul class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-gray-400 list-disc list-inside">
+      <li>4 Dormitorios</li>
+      <li>3 Baños</li>
+      <li>Pileta</li>
+      <li>Jardín amplio</li>
+      <li>Cocina equipada</li>
+      <li>Garage para 2 autos</li>
+      <li>Seguridad 24hs</li>
+      <li>Calefacción central</li>
+      <li>Terraza con vista</li>
+    </ul>
+  </section>
+
+  <!-- Mapa -->
+  <section class="mt-16 container mx-auto px-4 text-gray-300">
+    <h2 class="text-2xl font-bold mb-4 text-gray-300">Ubicación</h2>
+    <div class="w-full h-64 rounded-lg overflow-hidden shadow-lg border border-gray-700">
+      <iframe
+        class="w-full h-full"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13172.119331834673!2d-58.8325238871966!3d-34.44743517817819!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcbef5a6f924cf%3A0xe0424a45fcb0eb41!2sNordelta!5e0!3m2!1ses!2sar!4v1686323177771!5m2!1ses!2sar"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Mapa de Nordelta"
+      ></iframe>
+    </div>
+  </section>
+  
+</main>
+
+
+  <!-- Footer igual que el index -->
+  <footer class="bg-gray-800 text-center py-6 mt-10 text-gray-400">
+    <p>© 2025 Inmobiliaria. Todos los derechos reservados.</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Inmobiliaria Dark</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    html, body { scroll-behavior: smooth; }
+  </style>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+
+  <!-- Navbar -->
+  <header class="bg-gray-800 fixed w-full z-10 shadow">
+
+    <nav class="container mx-auto flex justify-between items-center text-gray-300 py-6">
+    <div>
+        <img
+        src="https://www.halaxia.com/_next/image?url=https%3A%2F%2Fs3.amazonaws.com%2Fhalaxia-backend-production-storage%2Fenvironments%2F58d9530800d027b614d01c0315dcfec9__300x100.png&w=640&q=75"
+        alt="Logo Inmobiliaria"
+        class="h-14 rounded-lg"
+        />
+    </div>
+    <ul class="flex space-x-4">
+            <li><a href="index.html#inicio" class="hover:text-blue-400">Inicio</a></li>
+            <li><a href="index.html#quienes" class="hover:text-blue-400">Quiénes Somos</a></li>
+            <li><a href="index.html#servicios" class="hover:text-blue-400">Servicios</a></li>
+            <li><a href="alquiler.html" class="hover:text-blue-400">Alquiler</a></li>
+            <li><a href="venta.html" class="hover:text-blue-400">Venta</a></li>
+            <li><a href="index.html#ubicacion" class="hover:text-blue-400">Ubicación</a></li>
+            <li><a href="index.html#contacto" class="hover:text-blue-400">Contacto</a></li>
+        </ul>
+    </nav>
+
+  </header>
+
+  <!-- Hero / Slider -->
+  <section id="inicio" class="pt-20 relative">
+    <div class="swiper mySwiper h-[500px]">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide bg-cover bg-center" style="background-image: url('https://content.elmueble.com/medio/2022/08/03/ly-villa-costa-blanca-3_1d6d2821_2000x1334.jpg');"></div>
+        <div class="swiper-slide bg-cover bg-center" style="background-image: url('https://content.elmueble.com/medio/2022/08/03/ly-villa-costa-blanca-1_c0d19490_1200x630.jpg');"></div>
+        <div class="swiper-slide bg-cover bg-center" style="background-image: url('https://arquiara.com/wp-content/uploads/2021/04/Casas-de-lujo-modernas.jpg');"></div>
+      </div>
+    </div>
+
+    <!-- Buscador debajo -->
+    <div class="bg-gray-800 py-8 px-4">
+      <div class="max-w-5xl mx-auto bg-gray-900 p-6 rounded-lg shadow-lg">
+        <form class="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <select class="p-2 bg-gray-700 text-white rounded">
+            <option>Tipo</option>
+            <option>Casa</option>
+            <option>Departamento</option>
+          </select>
+          <select class="p-2 bg-gray-700 text-white rounded">
+            <option>Operación</option>
+            <option>Venta</option>
+            <option>Alquiler</option>
+          </select>
+          <select class="p-2 bg-gray-700 text-white rounded">
+            <option>Ubicación</option>
+            <option>Buenos Aires</option>
+            <option>Córdoba</option>
+          </select>
+          <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white rounded p-2">Buscar</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quiénes Somos -->
+  <section id="quienes" class="py-16 container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-6 flex items-center justify-center">
+      <i class="fas fa-users text-blue-400 text-3xl mr-2"></i>
+
+      Quiénes Somos
+    </h2>
+    <p class="max-w-3xl mx-auto text-center text-gray-300">
+      Somos una inmobiliaria con más de 15 años de experiencia en el mercado. Brindamos un servicio integral y humano, acompañando a nuestros clientes en cada paso de su búsqueda o venta. Creemos en construir relaciones duraderas y basadas en la confianza.
+    </p>
+  </section>
+
+  <!-- Servicios -->
+  
+    <section id="servicios" class="py-16 px-4 bg-gray-800">
+    <h2 class="text-3xl font-bold text-center mb-10 flex items-center justify-center">
+      <i class="fas fa-cogs text-yellow-400 text-3xl mr-2"></i>
+      Nuestros Servicios
+    </h2>
+    <div class="grid md:grid-cols-3 gap-10 text-center">
+      <div>
+        <i class="fas fa-user-tie text-blue-400 text-4xl mb-2"></i>
+
+        <h3 class="text-xl font-semibold mb-2">Compra</h3>
+        <p>Te ayudamos a encontrar propiedades ideales con asesoramiento integral y acompañamiento legal.</p>
+      </div>
+      <div>
+        <i class="fas fa-hand-holding-usd text-blue-400 text-4xl mb-2"></i>
+
+        <h3 class="text-xl font-semibold mb-2">Venta</h3>
+        <p>Publicamos y gestionamos la venta de tu propiedad con marketing profesional y alcance masivo.</p>
+      </div>
+      <div>
+        <i class="fas fa-file-contract text-blue-400 text-4xl mb-2"></i>
+
+        <h3 class="text-xl font-semibold mb-2">Alquiler</h3>
+        <p>Tenemos una gran variedad de propiedades en alquiler adaptadas a todos los presupuestos.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ofertas -->
+  <section id="ofertas" class="py-16 px-4 bg-gray-900 text-center">
+    <h2 class="text-3xl font-bold text-center mb-10 flex items-center justify-center">
+      <i class="fas fa-tags text-blue-400 text-3xl mr-2"></i>
+      Ofertas Destacadas
+    </h2>
+    <div class="grid md:grid-cols-3 gap-8 container mx-auto">
+      <div class="bg-gray-700 rounded shadow p-4">
+        <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be"  class="w-full h-60 object-cover rounded mb-2" alt="">
+        <h3 class="text-xl font-semibold">Casa moderna en Nordelta</h3>
+        <p class="text-blue-400"><b>$350.000 USD</b></p>
+      </div>
+      <div class="bg-gray-700 rounded shadow p-4">
+        <img src="https://content.elmueble.com/medio/2022/08/03/ly-villa-costa-blanca-3_1d6d2821_2000x1334.jpg"  class="w-full h-60 object-cover rounded mb-2" alt="">
+        <h3 class="text-xl font-semibold">Departamento en Recoleta</h3>
+        <p class="text-blue-400"><b>$190.000 USD</b></p>
+      </div>
+      <div class="bg-gray-700 rounded shadow p-4">
+        <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914"  class="w-full h-60 object-cover rounded mb-2" alt="">
+        <h3 class="text-xl font-semibold">Casa con jardín en Córdoba</h3>
+        <p class="text-blue-400"><b>$280.000 USD</b></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ubicación -->
+<section id="ubicacion" class="py-16 px-4 bg-gray-800">
+    <h2 class="text-3xl font-bold text-center mb-10 flex items-center justify-center">
+      <i class="fas fa-map-marker-alt text-red-500 text-xl mt-1 mr-3"></i>
+      Donde nos encontramos
+    </h2>
+    <div class="w-full h-[400px]">
+      <iframe class="w-full h-full rounded" src="https://maps.google.com/maps?q=buenos+aires&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"></iframe>
+    </div>
+  </section>
+
+  <!-- Sección institucional de contacto -->
+<section id="contacto" class="py-16 px-4 bg-gray-900">
+  <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-8">
+    
+    <!-- Izquierda -->
+    <div class="md:w-2/5 flex flex-col justify-center items-start">
+      <div class="flex items-center mb-4">
+        <i class="fas fa-home text-blue-500 text-4xl mr-3"></i>
+        <span class="text-2xl font-bold">Inmobiliaria</span>
+      </div>
+      <p class="text-lg">Conectando personas con hogares.</p>
+    </div>
+
+    <!-- Derecha -->
+    <div class="md:w-3/5 grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div class="flex items-start">
+        <i class="fas fa-phone-alt text-blue-400 text-xl mt-1 mr-3"></i>
+        <div>
+          <h4 class="font-semibold">Teléfono</h4>
+          <p>+54 11 2345 6789</p>
+        </div>
+      </div>
+
+      <div class="flex items-start">
+        <i class="fab fa-whatsapp text-green-500 text-xl mt-1 mr-3"></i>
+        <div>
+          <h4 class="font-semibold">WhatsApp</h4>
+          <p>+54 9 11 2345 6789</p>
+        </div>
+      </div>
+
+      <div class="flex items-start">
+        <i class="fas fa-envelope text-yellow-400 text-xl mt-1 mr-3"></i>
+        <div>
+          <h4 class="font-semibold">Email</h4>
+          <p>contacto@inmobiliaria.com</p>
+        </div>
+      </div>
+
+      <div class="flex items-start">
+        <i class="fas fa-map-marker-alt text-red-500 text-xl mt-1 mr-3"></i>
+        <div>
+          <h4 class="font-semibold">Dirección</h4>
+          <p>Av. Siempreviva 1234, CABA</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-center py-6 mt-10 text-gray-400">
+    <p>© 2025 Inmobiliaria. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- Swiper -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+  <script>
+    const swiper = new Swiper(".mySwiper", {
+      loop: true,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      }
+    });
+  </script>
+</body>
+</html>
