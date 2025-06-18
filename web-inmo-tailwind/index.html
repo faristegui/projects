@@ -16,27 +16,81 @@
 
   <!-- Navbar -->
   <header class="bg-gray-800 fixed w-full z-10 shadow">
-
-    <nav class="container mx-auto flex justify-between items-center text-gray-300 py-6">
-    <div>
+    <nav class="container mx-auto flex justify-between items-center text-gray-300 py-4 px-6 relative">
+      <div>
         <img
-        src="https://www.halaxia.com/_next/image?url=https%3A%2F%2Fs3.amazonaws.com%2Fhalaxia-backend-production-storage%2Fenvironments%2F58d9530800d027b614d01c0315dcfec9__300x100.png&w=640&q=75"
-        alt="Logo Inmobiliaria"
-        class="h-14 rounded-lg"
+          src="https://www.halaxia.com/_next/image?url=https%3A%2F%2Fs3.amazonaws.com%2Fhalaxia-backend-production-storage%2Fenvironments%2F58d9530800d027b614d01c0315dcfec9__300x100.png&w=640&q=75"
+          alt="Logo Inmobiliaria"
+          class="h-14 rounded-lg"
         />
-    </div>
-    <ul class="flex space-x-4">
-            <li><a href="index.html#inicio" class="hover:text-blue-400">Inicio</a></li>
-            <li><a href="index.html#quienes" class="hover:text-blue-400">Quiénes Somos</a></li>
-            <li><a href="index.html#servicios" class="hover:text-blue-400">Servicios</a></li>
-            <li><a href="alquiler.html" class="hover:text-blue-400">Alquiler</a></li>
-            <li><a href="venta.html" class="hover:text-blue-400">Venta</a></li>
-            <li><a href="index.html#ubicacion" class="hover:text-blue-400">Ubicación</a></li>
-            <li><a href="index.html#contacto" class="hover:text-blue-400">Contacto</a></li>
-        </ul>
-    </nav>
+      </div>
 
+      <!-- Botón hamburguesa visible solo en móvil -->
+      <button id="menu-btn" class="md:hidden focus:outline-none z-20">
+        <!-- Icono hamburguesa y cruz con SVG -->
+        <svg id="menu-icon" class="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="close-icon" class="w-8 h-8 text-gray-300 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <!-- Menú para escritorio -->
+      <ul
+        id="menu"
+        class="hidden md:flex space-x-6 text-lg"
+      >
+        <li><a href="index.html#inicio" class="hover:text-blue-400">Inicio</a></li>
+        <li><a href="index.html#quienes" class="hover:text-blue-400">Quiénes Somos</a></li>
+        <li><a href="index.html#servicios" class="hover:text-blue-400">Servicios</a></li>
+        <li><a href="alquiler.html" class="hover:text-blue-400">Alquiler</a></li>
+        <li><a href="venta.html" class="hover:text-blue-400">Venta</a></li>
+        <li><a href="index.html#ubicacion" class="hover:text-blue-400">Ubicación</a></li>
+        <li><a href="index.html#contacto" class="hover:text-blue-400">Contacto</a></li>
+      </ul>
+
+      <!-- Menú para móvil, desplegable vertical -->
+      <ul
+        id="menu-mobile"
+        class="absolute top-full left-0 w-full bg-gray-900 text-center text-lg space-y-4 py-4 md:hidden hidden"
+      >
+        <li><a href="index.html#inicio" class="block hover:text-blue-400">Inicio</a></li>
+        <li><a href="index.html#quienes" class="block hover:text-blue-400">Quiénes Somos</a></li>
+        <li><a href="index.html#servicios" class="block hover:text-blue-400">Servicios</a></li>
+        <li><a href="alquiler.html" class="block hover:text-blue-400">Alquiler</a></li>
+        <li><a href="venta.html" class="block hover:text-blue-400">Venta</a></li>
+        <li><a href="index.html#ubicacion" class="block hover:text-blue-400">Ubicación</a></li>
+        <li><a href="index.html#contacto" class="block hover:text-blue-400">Contacto</a></li>
+      </ul>
+    </nav>
   </header>
+
+  <script>
+    const btn = document.getElementById('menu-btn');
+    const menuMobile = document.getElementById('menu-mobile');
+    const menuIcon = document.getElementById('menu-icon');
+    const closeIcon = document.getElementById('close-icon');
+
+    btn.addEventListener('click', () => {
+      menuMobile.classList.toggle('hidden');
+      menuIcon.classList.toggle('hidden');
+      closeIcon.classList.toggle('hidden');
+    });
+
+    // Cerrar menú al hacer clic en un link del menú móvil
+    const mobileLinks = menuMobile.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        menuMobile.classList.add('hidden');
+        menuIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+      });
+    });
+  </script>
+
 
   <!-- Hero / Slider -->
   <section id="inicio" class="pt-20 relative">
@@ -121,17 +175,17 @@
       Ofertas Destacadas
     </h2>
     <div class="grid md:grid-cols-3 gap-8 container mx-auto">
-      <div class="bg-gray-700 rounded shadow p-4">
+      <div class="bg-gray-700 rounded shadow p-4 cursor-pointer" onclick="window.location.href='ficha.html'">
         <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be"  class="w-full h-60 object-cover rounded mb-2" alt="">
         <h3 class="text-xl font-semibold">Casa moderna en Nordelta</h3>
         <p class="text-blue-400"><b>$350.000 USD</b></p>
       </div>
-      <div class="bg-gray-700 rounded shadow p-4">
+      <div class="bg-gray-700 rounded shadow p-4 cursor-pointer" onclick="window.location.href='ficha.html'">
         <img src="https://content.elmueble.com/medio/2022/08/03/ly-villa-costa-blanca-3_1d6d2821_2000x1334.jpg"  class="w-full h-60 object-cover rounded mb-2" alt="">
         <h3 class="text-xl font-semibold">Departamento en Recoleta</h3>
         <p class="text-blue-400"><b>$190.000 USD</b></p>
       </div>
-      <div class="bg-gray-700 rounded shadow p-4">
+      <div class="bg-gray-700 rounded shadow p-4 cursor-pointer" onclick="window.location.href='ficha.html'">
         <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914"  class="w-full h-60 object-cover rounded mb-2" alt="">
         <h3 class="text-xl font-semibold">Casa con jardín en Córdoba</h3>
         <p class="text-blue-400"><b>$280.000 USD</b></p>
@@ -156,11 +210,12 @@
     
     <!-- Izquierda -->
     <div class="md:w-2/5 flex flex-col justify-center items-start">
-      <div class="flex items-center mb-4">
-        <i class="fas fa-home text-blue-500 text-4xl mr-3"></i>
-        <span class="text-2xl font-bold">Inmobiliaria</span>
-      </div>
-      <p class="text-lg">Conectando personas con hogares.</p>
+      <img
+          src="https://www.halaxia.com/_next/image?url=https%3A%2F%2Fs3.amazonaws.com%2Fhalaxia-backend-production-storage%2Fenvironments%2F58d9530800d027b614d01c0315dcfec9__300x100.png&w=640&q=75"
+          alt="Logo Inmobiliaria"
+          class="h-[5rem] rounded-lg"
+        />
+      <p class="text-lg pt-5">Conectando personas con hogares.</p>
     </div>
 
     <!-- Derecha -->
