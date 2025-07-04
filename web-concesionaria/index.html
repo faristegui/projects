@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoLux | Tu próximo vehículo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-900 text-slate-200">
+    <!-- Navbar -->
+    <nav class="bg-gray-800 p-4 shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#inicio" class="text-2xl font-bold text-emerald-500">AutoLux</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="#inicio" class="hover:text-emerald-400 transition">Inicio</a>
+                <a href="#servicios" class="hover:text-emerald-400 transition">Servicios</a>
+                <a href="vehiculos.html" class="hover:text-emerald-400 transition">Vehículos</a>
+                <a href="#testimonios" class="hover:text-emerald-400 transition">Testimonios</a>
+                <a href="#ubicacion" class="hover:text-emerald-400 transition">Ubicación</a>
+                <a href="#contacto" class="hover:text-emerald-400 transition">Contacto</a>
+            </div>
+            <button class="md:hidden text-slate-200">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero / Inicio -->
+    <div id="inicio" class="relative h-96 overflow-hidden scroll-mt-16">
+        <div class="absolute inset-0 flex items-center justify-center bg-gray-900 bg-opacity-70 text-center px-4">
+            <div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Encuentra tu auto ideal</h1>
+                <p class="text-xl mb-6">Elegancia, rendimiento y confianza en cada vehículo</p>
+                <a href="vehiculos.html" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-6 rounded-lg inline-block transition">
+                    Ver autos
+                </a>
+            </div>
+        </div>
+        <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+             alt="Auto de lujo" class="w-full h-full object-cover">
+    </div>
+
+    <!-- Sección de Servicios -->
+    <section id="servicios" class="py-16 bg-gray-800 scroll-mt-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-emerald-500">Nuestros Servicios</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Servicio 1 -->
+                <div class="text-center p-6 bg-gray-700 hover:bg-gray-600 rounded-lg transition">
+                    <i class="fas fa-car text-5xl text-emerald-500 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Venta de Autos</h3>
+                    <p class="text-slate-300">Amplio catálogo de vehículos nuevos y usados con garantía.</p>
+                </div>
+                <!-- Servicio 2 -->
+                <div class="text-center p-6 bg-gray-700 hover:bg-gray-600 rounded-lg transition">
+                    <i class="fas fa-wrench text-5xl text-emerald-500 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Mantenimiento</h3>
+                    <p class="text-slate-300">Servicio técnico especializado para mantener tu auto en perfecto estado.</p>
+                </div>
+                <!-- Servicio 3 -->
+                <div class="text-center p-6 bg-gray-700 hover:bg-gray-600 rounded-lg transition">
+                    <i class="fas fa-shield-alt text-5xl text-emerald-500 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Financiamiento</h3>
+                    <p class="text-slate-300">Te ayudamos a conseguir el mejor plan de crédito para tu auto.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonios de Clientes -->
+    <section id="testimonios" class="py-16 bg-gray-700 scroll-mt-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-emerald-500">Lo que dicen nuestros clientes</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Testimonio 1 -->
+                <div class="bg-gray-600 p-6 rounded-lg shadow-md hover:bg-gray-500 transition">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Cliente" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold">María López</h4>
+                            <p class="text-emerald-400">⭐⭐⭐⭐⭐</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-200">"Excelente servicio, encontré el auto perfecto y el trato fue increíble."</p>
+                </div>
+                <!-- Testimonio 2 -->
+                <div class="bg-gray-600 p-6 rounded-lg shadow-md hover:bg-gray-500 transition">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Cliente" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold">Carlos Méndez</h4>
+                            <p class="text-emerald-400">⭐⭐⭐⭐⭐</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-200">"El mejor financiamiento que pude conseguir, todo muy transparente."</p>
+                </div>
+                <!-- Testimonio 3 -->
+                <div class="bg-gray-600 p-6 rounded-lg shadow-md hover:bg-gray-500 transition">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Cliente" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold">Ana Torres</h4>
+                            <p class="text-emerald-400">⭐⭐⭐⭐⭐</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-200">"El mantenimiento fue rápido y profesional, ¡super recomendado!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mapa -->
+    <section id="ubicacion" class="py-12 bg-gray-800 scroll-mt-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8 text-emerald-500">Visítanos</h2>
+            <div class="h-96 bg-gray-700 rounded-lg overflow-hidden">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.215209057987!2d-73.987844924686!3d40.74844097138939!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulario de Contacto -->
+    <section id="contacto" class="py-16 bg-gray-700 scroll-mt-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-emerald-500">Contáctanos</h2>
+            <div class="max-w-2xl mx-auto">
+                <form class="space-y-6">
+                    <div>
+                        <label for="name" class="block mb-2">Nombre</label>
+                        <input type="text" id="name" class="w-full p-3 rounded-lg bg-gray-600 border border-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-white">
+                    </div>
+                    <div>
+                        <label for="email" class="block mb-2">Correo Electrónico</label>
+                        <input type="email" id="email" class="w-full p-3 rounded-lg bg-gray-600 border border-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-white">
+                    </div>
+                    <div>
+                        <label for="message" class="block mb-2">Mensaje</label>
+                        <textarea id="message" rows="4" class="w-full p-3 rounded-lg bg-gray-600 border border-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-white"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-lg transition">
+                        Enviar Mensaje
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-emerald-500">AutoLux</h3>
+                    <p class="text-slate-400">La mejor agencia de autos de lujo, con años de experiencia y confianza.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-emerald-500">Enlaces Rápidos</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#inicio" class="text-slate-400 hover:text-emerald-400 transition">Inicio</a></li>
+                        <li><a href="#servicios" class="text-slate-400 hover:text-emerald-400 transition">Servicios</a></li>
+                        <li><a href="vehiculos.html" class="text-slate-400 hover:text-emerald-400 transition">Vehículos</a></li>
+                        <li><a href="#testimonios" class="text-slate-400 hover:text-emerald-400 transition">Testimonios</a></li>
+                        <li><a href="#ubicacion" class="text-slate-400 hover:text-emerald-400 transition">Ubicación</a></li>
+                        <li><a href="#contacto" class="text-slate-400 hover:text-emerald-400 transition">Contacto</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-emerald-500">Redes Sociales</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-slate-400 hover:text-emerald-400 transition"><i class="fab fa-facebook-f text-2xl"></i></a>
+                        <a href="#" class="text-slate-400 hover:text-emerald-400 transition"><i class="fab fa-instagram text-2xl"></i></a>
+                        <a href="#" class="text-slate-400 hover:text-emerald-400 transition"><i class="fab fa-twitter text-2xl"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-slate-400">
+                <p>&copy; 2023 AutoLux. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón redondo de WhatsApp (solo ícono) -->
+    <div class="fixed bottom-6 right-6 z-50">
+    <a 
+        href="https://wa.me/5491112345678?text=Hola,%20estoy%20interesado%20en%20sus%20vehículos" 
+        target="_blank"
+        class="bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
+    >
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+    </div>
+</body>
+</html>

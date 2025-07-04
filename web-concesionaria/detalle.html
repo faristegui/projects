@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audi A5 2023 | AutoLux</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Swiper JS (para el carrusel) -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Estilos personalizados para el carrusel */
+        .swiper {
+            width: 100%;
+            height: 100%;
+            border-radius: 0.5rem;
+        }
+        .swiper-slide {
+            text-align: center;
+            background: #1f2937; /* gray-800 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .swiper-button-next, .swiper-button-prev {
+            color: #10b981; /* emerald-500 */
+            background: rgba(0, 0, 0, 0.5);
+            padding: 2rem;
+            border-radius: 20%;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-900 text-slate-200">
+    <!-- Navbar (igual al index) -->
+    <nav class="bg-gray-800 p-4 shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-emerald-500">AutoLux</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="index.html#inicio" class="hover:text-emerald-400 transition">Inicio</a>
+                <a href="index.html#servicios" class="hover:text-emerald-400 transition">Servicios</a>
+                <a href="vehiculos.html" class="hover:text-emerald-400 transition">Vehículos</a>
+                <a href="index.html#testimonios" class="hover:text-emerald-400 transition">Testimonios</a>
+                <a href="index.html#ubicacion" class="hover:text-emerald-400 transition">Ubicación</a>
+                <a href="index.html#contacto" class="hover:text-emerald-400 transition">Contacto</a>
+            </div>
+            <button class="md:hidden text-slate-200">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="container mx-auto px-4 py-12">
+        <!-- Encabezado -->
+        <div class="mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-emerald-500">Audi A5 Sportback 2023</h1>
+            <p class="text-slate-400 mt-2">Premium Plus - 15,000 km</p>
+        </div>
+
+        <!-- Galería de imágenes (Carrusel con Swiper) -->
+        <div class="swiper my-8 rounded-lg shadow-xl">
+            <div class="swiper-wrapper">
+                <!-- Imagen 1 -->
+                <div class="swiper-slide">
+                    <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                         alt="Audi A5 frontal">
+                </div>
+                <!-- Imagen 2 -->
+                <div class="swiper-slide">
+                    <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                         alt="Audi A5 lateral">
+                </div>
+                <!-- Imagen 3 -->
+                <div class="swiper-slide">
+                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                         alt="Audi A5 interior">
+                </div>
+            </div>
+            <!-- Controles del carrusel -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+
+        <!-- Precio y acción principal -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 p-6 bg-gray-800 rounded-lg">
+            <div>
+                <span class="text-2xl md:text-3xl font-bold text-emerald-500">$45,000</span>
+                <p class="text-slate-400">Precio final (IVA incluido)</p>
+            </div>
+            <button id="contactarBtn" class="mt-4 md:mt-0 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-8 rounded-lg transition">
+                <i class="fas fa-envelope mr-2"></i> Contactar por este vehículo
+            </button>
+        </div>
+
+        <!-- Descripción detallada -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 text-emerald-500 border-b border-gray-700 pb-2">Descripción</h2>
+            <div class="prose prose-invert max-w-none">
+                <p class="text-slate-300">El <strong>Audi A5 Sportback 2023</strong> combina elegancia y deportividad en un diseño único. Este vehículo semi-nuevo cuenta con solo <strong>15,000 km</strong> y está en condiciones impecables, con mantenimiento al día en taller autorizado.</p>
+                <ul class="mt-4 space-y-2 text-slate-300">
+                    <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> <strong>Motor:</strong> 2.0L TFSI turbo, 261 HP, tracción Quattro.</li>
+                    <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> <strong>Transmisión:</strong> S tronic de 7 velocidades (automática).</li>
+                    <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> <strong>Consumo:</strong> 14 km/L en carretera.</li>
+                    <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> <strong>Color exterior:</strong> Gris Nardo metalizado.</li>
+                    <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> <strong>Interior:</strong> Tapicería de cuero negro con detalles en aluminio.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Especificaciones técnicas -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 text-emerald-500 border-b border-gray-700 pb-2">Especificaciones Técnicas</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Columna 1 -->
+                <div class="bg-gray-800 p-6 rounded-lg">
+                    <h3 class="text-lg font-semibold mb-4 text-emerald-400"><i class="fas fa-tachometer-alt mr-2"></i> Motor y Rendimiento</h3>
+                    <ul class="space-y-3 text-slate-300">
+                        <li><strong>Motor:</strong> 2.0L TFSI turbo</li>
+                        <li><strong>Potencia:</strong> 261 HP @ 5,000 rpm</li>
+                        <li><strong>Torque:</strong> 370 Nm @ 1,600 rpm</li>
+                        <li><strong>Tracción:</strong> Quattro (AWD)</li>
+                        <li><strong>Aceleración (0-100 km/h):</strong> 5.8 segundos</li>
+                    </ul>
+                </div>
+                <!-- Columna 2 -->
+                <div class="bg-gray-800 p-6 rounded-lg">
+                    <h3 class="text-lg font-semibold mb-4 text-emerald-400"><i class="fas fa-cogs mr-2"></i> Transmisión y Chasis</h3>
+                    <ul class="space-y-3 text-slate-300">
+                        <li><strong>Transmisión:</strong> S tronic 7 velocidades</li>
+                        <li><strong>Frenos:</strong> Discos ventilados (del.) / sólidos (tras.)</li>
+                        <li><strong>Suspensión:</strong> Multilink adaptativa</li>
+                        <li><strong>Dirección:</strong> Electromecánica progresiva</li>
+                        <li><strong>Peso:</strong> 1,620 kg</li>
+                    </ul>
+                </div>
+                <!-- Columna 3 -->
+                <div class="bg-gray-800 p-6 rounded-lg">
+                    <h3 class="text-lg font-semibold mb-4 text-emerald-400"><i class="fas fa-car mr-2"></i> Dimensiones y Capacidad</h3>
+                    <ul class="space-y-3 text-slate-300">
+                        <li><strong>Largo x Ancho x Alto:</strong> 4.74m x 1.84m x 1.39m</li>
+                        <li><strong>Maletero:</strong> 480 litros</li>
+                        <li><strong>Tanque de combustible:</strong> 54 litros</li>
+                        <li><strong>Consumo mixto:</strong> 12.5 km/L</li>
+                        <li><strong>Neumáticos:</strong> 245/40 R18</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Equipamiento -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 text-emerald-500 border-b border-gray-700 pb-2">Equipamiento y Tecnología</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Columna 1 -->
+                <div class="bg-gray-800 p-6 rounded-lg">
+                    <h3 class="text-lg font-semibold mb-4 text-emerald-400"><i class="fas fa-star mr-2"></i> Confort</h3>
+                    <ul class="space-y-2 text-slate-300">
+                        <li><i class="fas fa-check text-emerald-500 mr-2"></i> Asientos deportivos con calefacción</li>
+                        <li><i class="fas fa-check text-emerald-500 mr-2"></i> Climatizador tri-zona</li>
+                        <li><i class="fas fa-check text-emerald-500 mr-2"></i> Volante multifunción forrado en cuero</li>
+                        <li><i class="fas fa-check text-emerald-500 mr-2"></i> Techo panorámico solar</li>
+                        <li><i class="fas fa-check text-emerald-500 mr-2"></i> Llave keyless con botón de arranque</li>
+                    </ul>
+                </div>
+                <!-- Columna 2 -->
+                <div class="bg-gray-800 p-6 rounded-lg">
+                    <h3 class="text-lg font-semibold mb-4 text-emerald-400"><i class="fas fa-microchip mr-2"></i> Tecnología</h3>
+                    <ul class="space-y-2 text-slate-300">
+                        <li><i class="fas fa-check text-emerald-500 mr-2"></i> Pantalla táctil MMI de 10.1"</li>
+                        <li><i class="fas fa-check text-emerald-500 mr-2"></i> Audi Virtual Cockpit (12.3")</li>
+                        <li><i class="fas fa-check text-emerald-500 mr-2"></i> Sistema de sonido Bang & Olufsen</li>
+                        <li><i class="fas fa-check text-emerald-500 mr-2"></i> Apple CarPlay / Android Auto inalámbrico</li>
+                        <li><i class="fas fa-check text-emerald-500 mr-2"></i> Asistente de estacionamiento 360°</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal de contacto (oculto por defecto) -->
+    <div id="contactModal" class="fixed inset-0 bg-gray-900 bg-opacity-75 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-gray-800 rounded-lg shadow-xl max-w-md w-full p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-emerald-500">Contactar por Audi A5</h3>
+                <button id="closeModal" class="text-slate-400 hover:text-white">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form class="space-y-4">
+                <div>
+                    <label for="modalName" class="block mb-2">Nombre completo</label>
+                    <input type="text" id="modalName" class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-white">
+                </div>
+                <div>
+                    <label for="modalEmail" class="block mb-2">Correo electrónico</label>
+                    <input type="email" id="modalEmail" class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-white">
+                </div>
+                <div>
+                    <label for="modalPhone" class="block mb-2">Teléfono</label>
+                    <input type="tel" id="modalPhone" class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-white">
+                </div>
+                <div>
+                    <label for="modalMessage" class="block mb-2">Mensaje</label>
+                    <textarea id="modalMessage" rows="3" class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-white">Estoy interesado en el Audi A5 2023, por favor contáctenme con más información.</textarea>
+                </div>
+                <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-lg transition">
+                    Enviar consulta
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer (igual al index) -->
+    <footer class="bg-gray-800 py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-emerald-500">AutoLux</h3>
+                    <p class="text-slate-400">La mejor agencia de autos de lujo, con años de experiencia y confianza.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-emerald-500">Enlaces Rápidos</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html#inicio" class="text-slate-400 hover:text-emerald-400 transition">Inicio</a></li>
+                        <li><a href="index.html#servicios" class="text-slate-400 hover:text-emerald-400 transition">Servicios</a></li>
+                        <li><a href="vehiculos.html" class="text-slate-400 hover:text-emerald-400 transition">Vehículos</a></li>
+                        <li><a href="index.html#testimonios" class="text-slate-400 hover:text-emerald-400 transition">Testimonios</a></li>
+                        <li><a href="index.html#ubicacion" class="text-slate-400 hover:text-emerald-400 transition">Ubicación</a></li>
+                        <li><a href="index.html#contacto" class="text-slate-400 hover:text-emerald-400 transition">Contacto</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-emerald-500">Redes Sociales</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-slate-400 hover:text-emerald-400 transition"><i class="fab fa-facebook-f text-2xl"></i></a>
+                        <a href="#" class="text-slate-400 hover:text-emerald-400 transition"><i class="fab fa-instagram text-2xl"></i></a>
+                        <a href="#" class="text-slate-400 hover:text-emerald-400 transition"><i class="fab fa-twitter text-2xl"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-slate-400">
+                <p>&copy; 2023 AutoLux. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        // Inicializar Swiper (carrusel)
+        const swiper = new Swiper('.swiper', {
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            loop: true,
+            autoplay: {
+                delay: 5000,
+            },
+        });
+
+        // Mostrar/ocultar modal de contacto
+        const contactBtn = document.getElementById('contactarBtn');
+        const contactModal = document.getElementById('contactModal');
+        const closeModal = document.getElementById('closeModal');
+
+        contactBtn.addEventListener('click', () => {
+            contactModal.classList.remove('hidden');
+            contactModal.classList.add('flex');
+        });
+
+        closeModal.addEventListener('click', () => {
+            contactModal.classList.add('hidden');
+            contactModal.classList.remove('flex');
+        });
+    </script>
+</body>
+</html>

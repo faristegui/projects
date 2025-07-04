@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Texto a Voz</title>
+  <script src="https://code.responsivevoice.org/responsivevoice.js?key=bxloKe5T"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Habilitar modo oscuro por defecto
+    tailwind.config = {
+      darkMode: 'class'
+    }
+  </script>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen flex items-center justify-center p-6">
+  <div class="bg-gray-800 shadow-xl rounded-lg p-6 max-w-2xl w-full">
+    <h1 class="text-2xl font-bold mb-4 text-center text-white">🌓 Texto a Voz</h1>
+
+    <label for="voice" class="block mb-2 font-medium text-gray-200">Seleccionar voz:</label>
+    <select id="voice"
+            class="w-full bg-gray-700 text-white border-gray-600 rounded-md mb-4 p-2 focus:outline-none focus:ring focus:ring-blue-500">
+      <option value="Spanish Latin American Female">Español (Latinoamérica, Femenina)</option>
+      <option value="Spanish Latin American Male">Español (Latinoamérica, Masculina)</option>
+      <option value="Spanish Female">Español (España, Femenina)</option>
+      <option value="Spanish Male">Español (España, Masculina)</option>
+    </select>
+
+    <label for="texto" class="block mb-2 font-medium text-gray-200">Texto a convertir:</label>
+    <textarea id="texto"
+              class="w-full bg-gray-700 text-white border-gray-600 rounded-md p-3 mb-4 focus:outline-none focus:ring focus:ring-blue-500"
+              rows="10"
+              placeholder="Escribe algo aquí...">Hola, esta es una prueba en modo oscuro.</textarea>
+
+    <button onclick="leerTexto()"
+            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-md transition">
+      🔊 Reproducir voz
+    </button>
+  </div>
+
+  <script>
+    function leerTexto() {
+      const texto = document.getElementById("texto").value.trim();
+      const voz = document.getElementById("voice").value;
+
+      if (!texto) {
+        alert("Por favor, ingresa un texto para reproducir.");
+        return;
+      }
+
+      responsiveVoice.speak(texto, voz, {
+        rate: 1.1,
+        pitch: 0.9,
+        volume: 1
+      });
+    }
+  </script>
+</body>
+</html>

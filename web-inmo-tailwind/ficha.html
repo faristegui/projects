@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Inmobiliaria</title>
+  <!-- <title>Inmobiliaria</title> eliminado, ahora el título se setea dinámicamente desde JS -->
 
   <!-- Cargar TailwindCSS con el CDN correcto -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -27,9 +27,9 @@
     <nav class="container mx-auto flex justify-between items-center text-gray-300 py-4 px-6 relative">
       <div>
         <img
-          src="https://www.halaxia.com/_next/image?url=https%3A%2F%2Fs3.amazonaws.com%2Fhalaxia-backend-production-storage%2Fenvironments%2F58d9530800d027b614d01c0315dcfec9__300x100.png&w=640&q=75"
+          src=""
           alt="Logo Inmobiliaria"
-          class="h-14 rounded-lg"
+          class="h-14 rounded-lg hidden"
         />
       </div>
 
@@ -110,30 +110,7 @@
       <!-- Swiper -->
       <div class="swiper w-full h-[26rem] mb-6 rounded-lg border-4 border-gray-700">
         <div class="swiper-wrapper">
-          <!-- Slide 1 -->
-          <div class="swiper-slide flex items-center justify-center bg-black">
-            <img
-              src="https://images.homify.com/v1443654352/p/photo/image/960352/Imativa_Casa_Carrasco_0013.jpg"
-              alt="Foto 1"
-              class="max-w-full max-h-full object-contain"
-            />
-          </div>
-          <!-- Slide 2 -->
-          <div class="swiper-slide flex items-center justify-center bg-black">
-            <img
-              src="https://images.homify.com/v1443654387/p/photo/image/960356/Imativa_Casa_Carrasco_0015.jpg"
-              alt="Foto 2"
-              class="max-w-full max-h-full object-contain"
-            />
-          </div>
-          <!-- Slide 3 -->
-          <div class="swiper-slide flex items-center justify-center bg-black">
-            <img
-              src="https://constructorabyb.com.ar/wp-content/uploads/Screenshot_22.jpg"
-              alt="Foto 3"
-              class="max-w-full max-h-full object-contain"
-            />
-          </div>
+          <!-- Galería dinámica, inicia vacío -->
         </div>
 
         <!-- Navigation buttons -->
@@ -148,71 +125,42 @@
     <div class="md:w-2/5 bg-gray-800 rounded-xl shadow-lg p-6 space-y-8 text-center">
         
       <div class="bg-gray-900 text-white rounded-xl p-6 space-y-4 shadow-lg">
-
         <div>
-          <p class="text-white text-lg">🏠 Residencial - Departamento, 2 ambientes</p>
+          <p class="ficha-tipo-oferta text-white text-lg flex items-center gap-2">
+            <span class="icono-tipo">🏠</span>
+          </p>
         </div>
-
         <div>
-          <p class="text-white">📍 Calle Falsa 123, Barrio Inventado, Ciudad Ejemplo, Provincia Modelo, País Imaginario</p>
+          <p class="ficha-direccion text-white"></p>
         </div>
-
         <!-- Estado -->
         <div>
-          <p class="text-white text-base">
-            <span class="font-semibold">📌 Estado:</span> 
-            <span class="bg-green-600 text-sm px-3 py-1 rounded-full ml-2">Vigente</span>
-          </p>
+          <p class="ficha-precio text-white text-base"></p>
         </div>
-
-        <!-- Operación y precio -->
+        <!-- Operación y precio (dinámico, inicia vacío) -->
         <div>
-          <p class="text-2xl font-bold text-yellow-400">
-            Venta - $150.000 USD
-          </p>
+          <p class="ficha-precio-destacada text-2xl font-bold text-yellow-400"></p>
         </div>
-
       </div>
 
 
       <!-- Contacto -->
-      <div>
-        <h3 class="text-xl font-semibold mb-4 border-b border-gray-700 pb-2">Contacto</h3>
-        <p class="gap-3 mb-3">
-          <i class="fas fa-user text-blue-400"></i> Juan Pérez
-        </p>
-        <p class="gap-3 mb-3">
-          <i class="fas fa-phone text-green-400"></i> +54 9 11 1234 5678
-        </p>
-        <p class="gap-3">
-          <i class="fab fa-whatsapp text-green-500"></i> +54 9 11 9876 5432
-        </p>
-      </div>
+      <div class="ficha-contacto"></div>
     </div>
 
   </div>
 
   <!-- Descripción -->
   <section class="mt-16 container mx-auto px-4 bg-gray-800 rounded-xl p-8 text-gray-300">
-    <h2 class="text-2xl font-bold mb-4">Descripción</h2>
-    <p class="leading-relaxed text-justify">
-      Esta hermosa casa moderna en Nordelta ofrece un diseño espacioso con 4 dormitorios, 3 baños completos, y una gran cocina integrada. Cuenta con jardín y pileta, perfecta para familias que buscan comodidad y seguridad en un entorno natural.
-    </p>
+    <h2 class="text-2xl font-bold mb-4">Información destacable</h2>
+    <p class="ficha-descripcion leading-relaxed text-justify"></p>
   </section>
 
   <!-- Características -->
   <section class="mt-16 container mx-auto px-4 bg-gray-800 rounded-xl p-8 text-gray-300">
     <h2 class="text-2xl font-bold mb-6 text-gray-300">Características</h2>
-    <ul class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-gray-400 list-disc list-inside">
-      <li>4 Dormitorios</li>
-      <li>3 Baños</li>
-      <li>Pileta</li>
-      <li>Jardín amplio</li>
-      <li>Cocina equipada</li>
-      <li>Garage para 2 autos</li>
-      <li>Seguridad 24hs</li>
-      <li>Calefacción central</li>
-      <li>Terraza con vista</li>
+    <ul class="ficha-caracteristicas grid grid-cols-1 sm:grid-cols-3 gap-6 text-gray-400 list-disc list-inside">
+      <!-- Características dinámicas -->
     </ul>
   </section>
 
@@ -221,12 +169,13 @@
     <h2 class="text-2xl font-bold mb-4 text-gray-300">Ubicación</h2>
     <div class="w-full h-96 rounded-lg overflow-hidden shadow-lg border border-gray-700">
       <iframe
-        class="w-full h-full"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13172.119331834673!2d-58.8325238871966!3d-34.44743517817819!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcbef5a6f924cf%3A0xe0424a45fcb0eb41!2sNordelta!5e0!3m2!1ses!2sar!4v1686323177771!5m2!1ses!2sar"
+        class="ficha-mapa w-full h-full"
+        src=""
         allowfullscreen=""
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
-        title="Mapa de Nordelta"
+        title="Mapa de la propiedad"
+        style="display:none;"
       ></iframe>
     </div>
   </section>
@@ -251,5 +200,17 @@
     <p>© 2025 Inmobiliaria. Todos los derechos reservados.</p>
   </footer>
 
+  <script src="js/api.js"></script>
+  <script>
+    function getIdFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('id');
+    }
+    window.addEventListener('DOMContentLoaded', function() {
+      cargarDatosInmobiliaria();
+      const idFicha = getIdFromUrl();
+      if (idFicha) cargarFichaPropiedad(idFicha);
+    });
+  </script>
 </body>
 </html>

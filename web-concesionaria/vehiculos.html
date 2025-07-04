@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehículos | AutoLux</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Estilo para el input range */
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            background: #059669; /* emerald-600 */
+            border-radius: 50%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-900 text-slate-200">
+    <!-- Navbar (consistente con index.html) -->
+    <nav class="bg-gray-800 p-4 shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-emerald-500">AutoLux</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="index.html#inicio" class="hover:text-emerald-400 transition">Inicio</a>
+                <a href="index.html#servicios" class="hover:text-emerald-400 transition">Servicios</a>
+                <a href="vehiculos.html" class="hover:text-emerald-400 transition">Vehículos</a>
+                <a href="index.html#testimonios" class="hover:text-emerald-400 transition">Testimonios</a>
+                <a href="index.html#ubicacion" class="hover:text-emerald-400 transition">Ubicación</a>
+                <a href="index.html#contacto" class="hover:text-emerald-400 transition">Contacto</a>
+            </div>
+            <button class="md:hidden text-slate-200">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Filtros -->
+    <section class="py-12 bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl font-bold mb-8 text-emerald-500">Nuestros Vehículos</h1>
+            <div class="bg-gray-700 p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-4 text-slate-200">Filtrar por:</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Filtro: Marca -->
+                    <div>
+                        <label for="marca" class="block mb-2 text-slate-300">Marca</label>
+                        <select id="marca" class="w-full p-3 rounded-lg bg-gray-600 border border-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-white">
+                            <option value="">Todas</option>
+                            <option value="audi">Audi</option>
+                            <option value="bmw">BMW</option>
+                            <option value="mercedes">Mercedes-Benz</option>
+                            <option value="tesla">Tesla</option>
+                        </select>
+                    </div>
+                    <!-- Filtro: Modelo -->
+                    <div>
+                        <label for="modelo" class="block mb-2 text-slate-300">Modelo</label>
+                        <input type="text" id="modelo" placeholder="Ej: Model S" class="w-full p-3 rounded-lg bg-gray-600 border border-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-white">
+                    </div>
+                    <!-- Filtro: Rango de precios -->
+                    <div>
+                        <label for="precio" class="block mb-2 text-slate-300">Precio máximo: <span id="precioValue" class="text-emerald-400">$50,000</span></label>
+                        <input type="range" id="precio" min="10000" max="100000" step="5000" value="50000" class="w-full h-2 bg-gray-600 rounded-lg appearance-none cursor-pointer">
+                    </div>
+                </div>
+                <button id="filtrar" class="mt-6 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-6 rounded-lg transition">
+                    Aplicar Filtros
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Grilla de Vehículos -->
+    <section class="py-12 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Vehículo 1 -->
+                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition hover:translate-y-[-4px]">
+                    <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                         alt="Audi A5" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-xl font-bold text-emerald-500">Audi A5 2023</h3>
+                            <span class="bg-emerald-600 text-white text-sm px-2 py-1 rounded">Nuevo</span>
+                        </div>
+                        <p class="text-slate-400 mt-2">Sportback Premium Plus</p>
+                        <ul class="mt-4 space-y-2 text-slate-300">
+                            <li class="flex items-center"><i class="fas fa-tachometer-alt mr-2 text-emerald-500"></i> 15,000 km</li>
+                            <li class="flex items-center"><i class="fas fa-gas-pump mr-2 text-emerald-500"></i> Híbrido</li>
+                            <li class="flex items-center"><i class="fas fa-car mr-2 text-emerald-500"></i> Automático</li>
+                        </ul>
+                        <div class="mt-6 flex justify-between items-center">
+                            <span class="text-2xl font-bold">$45,000</span>
+                            <button onclick="javascript:verAuto()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded-lg transition">
+                                Ver Detalles
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vehículo 2 -->
+                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition hover:translate-y-[-4px]">
+                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                         alt="BMW X3" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-xl font-bold text-emerald-500">BMW X3 2022</h3>
+                            <span class="bg-gray-600 text-white text-sm px-2 py-1 rounded">Usado</span>
+                        </div>
+                        <p class="text-slate-400 mt-2">xDrive30i</p>
+                        <ul class="mt-4 space-y-2 text-slate-300">
+                            <li class="flex items-center"><i class="fas fa-tachometer-alt mr-2 text-emerald-500"></i> 32,000 km</li>
+                            <li class="flex items-center"><i class="fas fa-gas-pump mr-2 text-emerald-500"></i> Gasolina</li>
+                            <li class="flex items-center"><i class="fas fa-car mr-2 text-emerald-500"></i> Automático</li>
+                        </ul>
+                        <div class="mt-6 flex justify-between items-center">
+                            <span class="text-2xl font-bold">$38,500</span>
+                            <button onclick="javascript:verAuto()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded-lg transition">
+                                Ver Detalles
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vehículo 3 -->
+                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition hover:translate-y-[-4px]">
+                    <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                         alt="Tesla Model 3" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-xl font-bold text-emerald-500">Tesla Model 3 2023</h3>
+                            <span class="bg-emerald-600 text-white text-sm px-2 py-1 rounded">Nuevo</span>
+                        </div>
+                        <p class="text-slate-400 mt-2">Long Range</p>
+                        <ul class="mt-4 space-y-2 text-slate-300">
+                            <li class="flex items-center"><i class="fas fa-tachometer-alt mr-2 text-emerald-500"></i> 5,000 km</li>
+                            <li class="flex items-center"><i class="fas fa-bolt mr-2 text-emerald-500"></i> Eléctrico</li>
+                            <li class="flex items-center"><i class="fas fa-car mr-2 text-emerald-500"></i> Automático</li>
+                        </ul>
+                        <div class="mt-6 flex justify-between items-center">
+                            <span class="text-2xl font-bold">$52,000</span>
+                            <button onclick="javascript:verAuto()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded-lg transition">
+                                Ver Detalles
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vehículo 4 -->
+                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition hover:translate-y-[-4px]">
+                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                         alt="Mercedes-Benz GLC" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-xl font-bold text-emerald-500">Mercedes GLC 2021</h3>
+                            <span class="bg-gray-600 text-white text-sm px-2 py-1 rounded">Usado</span>
+                        </div>
+                        <p class="text-slate-400 mt-2">300 4MATIC</p>
+                        <ul class="mt-4 space-y-2 text-slate-300">
+                            <li class="flex items-center"><i class="fas fa-tachometer-alt mr-2 text-emerald-500"></i> 28,500 km</li>
+                            <li class="flex items-center"><i class="fas fa-gas-pump mr-2 text-emerald-500"></i> Diésel</li>
+                            <li class="flex items-center"><i class="fas fa-car mr-2 text-emerald-500"></i> Automático</li>
+                        </ul>
+                        <div class="mt-6 flex justify-between items-center">
+                            <span class="text-2xl font-bold">$41,200</span>
+                            <button onclick="javascript:verAuto()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded-lg transition">
+                                Ver Detalles
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vehículo 5 -->
+                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition hover:translate-y-[-4px]">
+                    <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                         alt="Audi Q5" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-xl font-bold text-emerald-500">Audi Q5 2022</h3>
+                            <span class="bg-gray-600 text-white text-sm px-2 py-1 rounded">Usado</span>
+                        </div>
+                        <p class="text-slate-400 mt-2">Premium Plus</p>
+                        <ul class="mt-4 space-y-2 text-slate-300">
+                            <li class="flex items-center"><i class="fas fa-tachometer-alt mr-2 text-emerald-500"></i> 22,000 km</li>
+                            <li class="flex items-center"><i class="fas fa-gas-pump mr-2 text-emerald-500"></i> Híbrido</li>
+                            <li class="flex items-center"><i class="fas fa-car mr-2 text-emerald-500"></i> Automático</li>
+                        </ul>
+                        <div class="mt-6 flex justify-between items-center">
+                            <span class="text-2xl font-bold">$47,800</span>
+                            <button onclick="javascript:verAuto()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded-lg transition">
+                                Ver Detalles
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vehículo 6 -->
+                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition hover:translate-y-[-4px]">
+                    <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                         alt="Tesla Model Y" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-xl font-bold text-emerald-500">Tesla Model Y 2023</h3>
+                            <span class="bg-emerald-600 text-white text-sm px-2 py-1 rounded">Nuevo</span>
+                        </div>
+                        <p class="text-slate-400 mt-2">Performance</p>
+                        <ul class="mt-4 space-y-2 text-slate-300">
+                            <li class="flex items-center"><i class="fas fa-tachometer-alt mr-2 text-emerald-500"></i> 8,000 km</li>
+                            <li class="flex items-center"><i class="fas fa-bolt mr-2 text-emerald-500"></i> Eléctrico</li>
+                            <li class="flex items-center"><i class="fas fa-car mr-2 text-emerald-500"></i> Automático</li>
+                        </ul>
+                        <div class="mt-6 flex justify-between items-center">
+                            <span class="text-2xl font-bold">$58,500</span>
+                            <button onclick="javascript:verAuto()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded-lg transition">
+                                Ver Detalles
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (consistente con index.html) -->
+    <footer class="bg-gray-800 py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-emerald-500">AutoLux</h3>
+                    <p class="text-slate-400">La mejor agencia de autos de lujo, con años de experiencia y confianza.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-emerald-500">Enlaces Rápidos</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html#inicio" class="text-slate-400 hover:text-emerald-400 transition">Inicio</a></li>
+                        <li><a href="index.html#servicios" class="text-slate-400 hover:text-emerald-400 transition">Servicios</a></li>
+                        <li><a href="vehiculos.html" class="text-slate-400 hover:text-emerald-400 transition">Vehículos</a></li>
+                        <li><a href="index.html#testimonios" class="text-slate-400 hover:text-emerald-400 transition">Testimonios</a></li>
+                        <li><a href="index.html#ubicacion" class="text-slate-400 hover:text-emerald-400 transition">Ubicación</a></li>
+                        <li><a href="index.html#contacto" class="text-slate-400 hover:text-emerald-400 transition">Contacto</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-emerald-500">Redes Sociales</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-slate-400 hover:text-emerald-400 transition"><i class="fab fa-facebook-f text-2xl"></i></a>
+                        <a href="#" class="text-slate-400 hover:text-emerald-400 transition"><i class="fab fa-instagram text-2xl"></i></a>
+                        <a href="#" class="text-slate-400 hover:text-emerald-400 transition"><i class="fab fa-twitter text-2xl"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-slate-400">
+                <p>&copy; 2023 AutoLux. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script para el filtro de precios -->
+    <script>
+        const precioSlider = document.getElementById('precio');
+        const precioValue = document.getElementById('precioValue');
+
+        precioSlider.addEventListener('input', () => {
+            const value = parseInt(precioSlider.value).toLocaleString('es-ES');
+            precioValue.textContent = `$${value}`;
+        });
+
+        // Ejemplo de filtrado (simulado)
+        document.getElementById('filtrar').addEventListener('click', () => {
+            alert('Filtros aplicados (simulación). En una implementación real, esto filtraría la grilla de vehículos.');
+        });
+
+        function verAuto()
+        {
+            window.location = "detalle.html";
+        }
+    </script>
+</body>
+</html>

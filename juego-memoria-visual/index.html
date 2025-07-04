@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Juego de Memoria</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' };
+  </script>
+  <style>
+    .card { perspective: 1000px; }
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.6s;
+    }
+    .card.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+    }
+    .card-front {
+      background-color: #c4b5fd;
+      color: white;
+    }
+    .dark .card-front {
+      background-color: #6d28d9;
+    }
+    .card-back {
+      background-color: white;
+      border: 2px solid #a78bfa;
+      transform: rotateY(180deg);
+    }
+    .dark .card-back {
+      background-color: #1f2937;
+      color: white;
+      border-color: #7c3aed;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-pink-100 to-purple-200 dark:from-gray-900 dark:to-gray-800 min-h-screen flex flex-col items-center justify-start p-4 transition-colors duration-500">
+
+  <div class="flex justify-between items-center w-full max-w-md mb-4">
+    <h1 class="text-2xl font-bold text-purple-700 dark:text-purple-300">🧠 Juego de Memoria</h1>
+    <button id="toggleDark" class="text-sm bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-white px-3 py-1 rounded hover:bg-gray-300 dark:hover:bg-gray-600 transition">
+    <span id="themeIcon">🌙</span> Modo
+    </button>
+    
+</div>
+
+  <p id="levelLabel" class="text-gray-700 dark:text-gray-300 mb-4">Nivel 1: 4 parejas</p>
+
+  <div id="game"
+     class="grid gap-4 w-full max-w-screen-lg mx-auto justify-center px-2 sm:px-4"
+     style="place-items: center;"></div>
+
+
+  <!-- Modal -->
+  <div id="messageModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+    <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-xl text-center w-80 border dark:border-gray-700">
+      <h2 id="modalTitle" class="text-2xl font-bold text-green-600 dark:text-green-400 mb-2"></h2>
+      <p id="modalText" class="text-gray-700 dark:text-gray-300 mb-4"></p>
+      <button id="nextBtn" class="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600 transition">Continuar</button>
+    </div>
+  </div>
+
+  <!-- Botón reiniciar -->
+  <div class="fixed bottom-4">
+    <button id="restart" class="px-6 py-3 bg-purple-500 text-white rounded-full shadow-lg hover:bg-purple-600 transition">
+      🔁 Reiniciar nivel
+    </button>
+  </div>
+
+  <script>
+    const game = document.getElementById('game');
+    const levelLabel = document.getElementById('levelLabel');
+    const messageModal = document.getElementById('messageModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalText = document.getElementById('modalText');
+    const nextBtn = document.getElementById('nextBtn');
+    const restartBtn = document.getElementById('restart');
+    const toggleDark = document.getElementById('toggleDark');
+
+    const allEmojis = ['🐶', '🐱', '🐰', '🦊', '🐼', '🐸', '🐵', '🦁', '🐯', '🐨', '🐷', '🐮', '🐔', '🦄', '🐙', '🐢', '🐍', '🐳', '🐞', '🦕', '🐝', '🐧', '🦩'];
+    const maxLevel = 8;
+    const pairsPerLevel = [4, 6, 8, 10, 12, 14, 16];
+
+    let level = 0;
+    let cards = [];
+    let firstCard = null;
+    let lock = false;
+
+    function shuffle(array) {
+      return array.sort(() => Math.random() - 0.5);
+    }
+
+    function createCard(card) {
+        const cardEl = document.createElement('div');
+        cardEl.className = 'card w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 transition-shadow duration-300 hover:shadow-lg';
+        cardEl.dataset.id = card.id;
+
+        // Rotación aleatoria
+        const angle = (Math.random() * 10 - 5).toFixed(1); // -5 a +5
+        cardEl.style.transform = `rotate(${angle}deg)`;
+
+        const inner = document.createElement('div');
+        inner.className = 'card-inner';
+
+        const front = document.createElement('div');
+        front.className = 'card-front rounded-lg shadow-md border border-purple-300 dark:border-purple-700';
+
+        front.textContent = '❓';
+
+        const back = document.createElement('div');
+        back.className = 'card-back rounded-lg shadow-md border border-purple-300 dark:border-purple-700';
+        back.textContent = card.emoji;
+
+        inner.appendChild(front);
+        inner.appendChild(back);
+        cardEl.appendChild(inner);
+
+        cardEl.addEventListener('click', () => {
+            if (lock || card.matched || cardEl.classList.contains('flipped')) return;
+
+            cardEl.classList.add('flipped');
+
+            if (!firstCard) {
+            firstCard = { card, element: cardEl };
+            } else {
+            lock = true;
+            if (firstCard.card.emoji === card.emoji) {
+                firstCard.card.matched = true;
+                card.matched = true;
+                firstCard = null;
+                lock = false;
+
+                if (cards.every(c => c.matched)) {
+                setTimeout(() => {
+                    showLevelResult();
+                }, 500);
+                }
+            } else {
+                setTimeout(() => {
+                firstCard.element.classList.remove('flipped');
+                cardEl.classList.remove('flipped');
+                firstCard = null;
+                lock = false;
+                }, 1000);
+            }
+            }
+        });
+
+        return cardEl;
+    }
+
+
+    function setupGame() {
+      firstCard = null;
+      lock = false;
+      game.innerHTML = '';
+
+      const pairs = pairsPerLevel[level];
+const totalCards = pairs * 2;
+
+// Alternar distribución
+let rows, cols;
+if (level % 2 === 0) {
+  rows = 2;
+  cols = Math.ceil(totalCards / rows);
+} else {
+  cols = 4;
+  rows = Math.ceil(totalCards / cols);
+}
+
+// Aplicar diseño responsive
+game.style.gridTemplateColumns = `repeat(${cols}, auto)`;
+game.style.gridTemplateRows = `repeat(${rows}, auto)`;
+
+
+      const emojis = shuffle(allEmojis).slice(0, pairs);
+      const fullSet = shuffle([...emojis, ...emojis]);
+      cards = fullSet.map((emoji, index) => ({
+        id: index,
+        emoji,
+        matched: false,
+      }));
+
+      levelLabel.textContent = `Nivel ${level + 1}: ${pairs} parejas`;
+
+      cards.forEach(card => {
+        const cardEl = createCard(card);
+        game.appendChild(cardEl);
+      });
+    }
+
+    function showLevelResult() {
+      messageModal.classList.remove('hidden');
+      if (level + 1 >= pairsPerLevel.length) {
+        modalTitle.textContent = '🏆 ¡Ganaste el juego!';
+        modalText.textContent = 'Completaste todos los niveles de memoria. ¡Excelente!';
+        nextBtn.textContent = 'Jugar de nuevo';
+      } else {
+        modalTitle.textContent = '🎉 ¡Nivel completado!';
+        modalText.textContent = `¡Pasaste al nivel ${level + 2}!`;
+        nextBtn.textContent = 'Siguiente nivel';
+      }
+    }
+
+    nextBtn.addEventListener('click', () => {
+      messageModal.classList.add('hidden');
+      if (level + 1 >= pairsPerLevel.length) {
+        level = 0;
+      } else {
+        level++;
+      }
+      setupGame();
+    });
+
+    restartBtn.addEventListener('click', setupGame);
+    toggleDark.addEventListener('click', () => {
+        const themeIcon = document.getElementById('themeIcon');
+
+        function updateThemeIcon() {
+        if (document.documentElement.classList.contains('dark')) {
+            themeIcon.textContent = '☀️';
+        } else {
+            themeIcon.textContent = '🌙';
+        }
+        }
+
+        toggleDark.addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark');
+        updateThemeIcon();
+        });
+
+        // Forzar modo oscuro al iniciar (opcional)
+        document.documentElement.classList.add('dark');
+        updateThemeIcon();
+;
+    });
+
+    // Inicio
+    setupGame();
+  </script>
+
+</body>
+</html>

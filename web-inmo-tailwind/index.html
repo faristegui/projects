@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Inmobiliaria Dark</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -19,9 +18,9 @@
     <nav class="container mx-auto flex justify-between items-center text-gray-300 py-4 px-6 relative">
       <div>
         <img
-          src="https://www.halaxia.com/_next/image?url=https%3A%2F%2Fs3.amazonaws.com%2Fhalaxia-backend-production-storage%2Fenvironments%2F58d9530800d027b614d01c0315dcfec9__300x100.png&w=640&q=75"
+          src=""
           alt="Logo Inmobiliaria"
-          class="h-14 rounded-lg"
+          class="h-14 rounded-lg hidden"
         />
       </div>
 
@@ -93,7 +92,7 @@
 
 
   <!-- Hero / Slider -->
-  <section id="inicio" class="pt-20 relative">
+  <section id="inicio" class="pt-20 relative scroll-mt-20">
     <div class="swiper mySwiper h-[500px]">
       <div class="swiper-wrapper">
         <div class="swiper-slide bg-cover bg-center" style="background-image: url('https://content.elmueble.com/medio/2022/08/03/ly-villa-costa-blanca-3_1d6d2821_2000x1334.jpg');"></div>
@@ -102,33 +101,8 @@
       </div>
     </div>
 
-    <!-- Buscador debajo -->
-    <div class="bg-gray-800 py-8 px-4">
-      <div class="max-w-5xl mx-auto bg-gray-900 p-6 rounded-lg shadow-lg">
-        <form class="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <select class="p-2 bg-gray-700 text-white rounded">
-            <option>Tipo</option>
-            <option>Casa</option>
-            <option>Departamento</option>
-          </select>
-          <select class="p-2 bg-gray-700 text-white rounded">
-            <option>Operación</option>
-            <option>Venta</option>
-            <option>Alquiler</option>
-          </select>
-          <select class="p-2 bg-gray-700 text-white rounded">
-            <option>Ubicación</option>
-            <option>Buenos Aires</option>
-            <option>Córdoba</option>
-          </select>
-          <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white rounded p-2">Buscar</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
   <!-- Quiénes Somos -->
-  <section id="quienes" class="py-16 container mx-auto px-4">
+  <section id="quienes" class="py-16 container mx-auto px-4 scroll-mt-20">
     <h2 class="text-3xl font-bold text-center mb-6 flex items-center justify-center">
       <i class="fas fa-users text-blue-400 text-3xl mr-2"></i>
 
@@ -141,7 +115,7 @@
 
   <!-- Servicios -->
   
-    <section id="servicios" class="py-16 px-4 bg-gray-800">
+    <section id="servicios" class="py-16 px-4 bg-gray-800 scroll-mt-20">
     <h2 class="text-3xl font-bold text-center mb-10 flex items-center justify-center">
       <i class="fas fa-cogs text-yellow-400 text-3xl mr-2"></i>
       Nuestros Servicios
@@ -169,7 +143,7 @@
   </section>
 
   <!-- Ofertas -->
-  <section id="ofertas" class="py-16 px-4 bg-gray-900 text-center">
+  <section id="ofertas" class="py-16 px-4 bg-gray-900 text-center scroll-mt-20">
     <h2 class="text-3xl font-bold text-center mb-10 flex items-center justify-center">
       <i class="fas fa-tags text-blue-400 text-3xl mr-2"></i>
       Ofertas Destacadas
@@ -194,18 +168,18 @@
   </section>
 
   <!-- Ubicación -->
-<section id="ubicacion" class="py-16 px-4 bg-gray-800">
+<section id="ubicacion" class="py-16 px-4 bg-gray-800 scroll-mt-20">
     <h2 class="text-3xl font-bold text-center mb-10 flex items-center justify-center">
       <i class="fas fa-map-marker-alt text-red-500 text-xl mt-1 mr-3"></i>
       Donde nos encontramos
     </h2>
-    <div class="w-full h-[400px]">
-      <iframe class="w-full h-full rounded" src="https://maps.google.com/maps?q=buenos+aires&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"></iframe>
+    <div class="w-full h-96 min-h-[24rem] max-h-[32rem]">
+      <iframe class="w-full h-full min-h-[24rem] max-h-[32rem] rounded" src="https://maps.google.com/maps?q=buenos+aires&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" style="min-height:24rem;max-height:32rem;"></iframe>
     </div>
   </section>
 
   <!-- Sección institucional de contacto -->
-<section id="contacto" class="py-16 px-4 bg-gray-900">
+<section id="contacto" class="py-16 px-4 bg-gray-900 scroll-mt-20">
   <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-8">
     
     <!-- Izquierda -->
@@ -224,7 +198,7 @@
         <i class="fas fa-phone-alt text-blue-400 text-xl mt-1 mr-3"></i>
         <div>
           <h4 class="font-semibold">Teléfono</h4>
-          <p>+54 11 2345 6789</p>
+          <p></p>
         </div>
       </div>
 
@@ -232,7 +206,7 @@
         <i class="fab fa-whatsapp text-green-500 text-xl mt-1 mr-3"></i>
         <div>
           <h4 class="font-semibold">WhatsApp</h4>
-          <p>+54 9 11 2345 6789</p>
+          <p></p>
         </div>
       </div>
 
@@ -240,7 +214,7 @@
         <i class="fas fa-envelope text-yellow-400 text-xl mt-1 mr-3"></i>
         <div>
           <h4 class="font-semibold">Email</h4>
-          <p>contacto@inmobiliaria.com</p>
+          <p></p>
         </div>
       </div>
 
@@ -248,7 +222,7 @@
         <i class="fas fa-map-marker-alt text-red-500 text-xl mt-1 mr-3"></i>
         <div>
           <h4 class="font-semibold">Dirección</h4>
-          <p>Av. Siempreviva 1234, CABA</p>
+          <p></p>
         </div>
       </div>
     </div>
@@ -272,5 +246,6 @@
       }
     });
   </script>
+  <script src="js/api.js"></script>
 </body>
 </html>
