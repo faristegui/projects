@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -42,6 +42,7 @@
       background-color: white;
       border: 2px solid #a78bfa;
       transform: rotateY(180deg);
+      font-size: 50px;
     }
     .dark .card-back {
       background-color: #1f2937;
@@ -52,20 +53,35 @@
 </head>
 <body class="bg-gradient-to-br from-pink-100 to-purple-200 dark:from-gray-900 dark:to-gray-800 min-h-screen flex flex-col items-center justify-start p-4 transition-colors duration-500">
 
+  <!-- Modal de selección de temática -->
+  <div id="themeModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-xl text-center w-80 border dark:border-gray-700">
+      <h2 class="text-2xl font-bold text-purple-700 dark:text-purple-300 mb-4">Elige una temática</h2>
+      <div class="flex flex-col gap-3">
+        <button class="theme-btn bg-purple-200 hover:bg-purple-300 dark:bg-purple-700 dark:hover:bg-purple-600 text-purple-800 dark:text-white py-2 rounded" data-theme="animales">🐶 Animales</button>
+        <button class="theme-btn bg-yellow-100 hover:bg-yellow-200 dark:bg-yellow-600 dark:hover:bg-yellow-500 text-yellow-800 dark:text-white py-2 rounded" data-theme="frutas">🍎 Frutas</button>
+        <button class="theme-btn bg-blue-100 hover:bg-blue-200 dark:bg-blue-700 dark:hover:bg-blue-600 text-blue-800 dark:text-white py-2 rounded" data-theme="vehiculos">🚗 Vehículos</button>
+        <button class="theme-btn bg-green-100 hover:bg-green-200 dark:bg-green-700 dark:hover:bg-green-600 text-green-800 dark:text-white py-2 rounded" data-theme="objetos">🎲 Objetos</button>
+        <button class="theme-btn bg-red-100 hover:bg-red-200 dark:bg-red-700 dark:hover:bg-red-600 text-red-800 dark:text-white py-2 rounded" data-theme="banderas">🏳️‍🌈 Banderas</button>
+        <button class="theme-btn bg-orange-100 hover:bg-orange-200 dark:bg-orange-700 dark:hover:bg-orange-600 text-orange-800 dark:text-white py-2 rounded" data-theme="deportes">🏀 Deportes</button>
+        <button class="theme-btn bg-pink-100 hover:bg-pink-200 dark:bg-pink-700 dark:hover:bg-pink-600 text-pink-800 dark:text-white py-2 rounded" data-theme="comidas">🍔 Comidas</button>
+      </div>
+    </div>
+  </div>
+  <!-- Fin modal temática -->
+
   <div class="flex justify-between items-center w-full max-w-md mb-4">
     <h1 class="text-2xl font-bold text-purple-700 dark:text-purple-300">🧠 Juego de Memoria</h1>
     <button id="toggleDark" class="text-sm bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-white px-3 py-1 rounded hover:bg-gray-300 dark:hover:bg-gray-600 transition">
-    <span id="themeIcon">🌙</span> Modo
+      <span id="themeIcon">🌙</span> Modo
     </button>
-    
-</div>
+  </div>
 
   <p id="levelLabel" class="text-gray-700 dark:text-gray-300 mb-4">Nivel 1: 4 parejas</p>
 
   <div id="game"
      class="grid gap-4 w-full max-w-screen-lg mx-auto justify-center px-2 sm:px-4"
      style="place-items: center;"></div>
-
 
   <!-- Modal -->
   <div id="messageModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
@@ -92,8 +108,20 @@
     const nextBtn = document.getElementById('nextBtn');
     const restartBtn = document.getElementById('restart');
     const toggleDark = document.getElementById('toggleDark');
+    const themeIcon = document.getElementById('themeIcon');
 
-    const allEmojis = ['🐶', '🐱', '🐰', '🦊', '🐼', '🐸', '🐵', '🦁', '🐯', '🐨', '🐷', '🐮', '🐔', '🦄', '🐙', '🐢', '🐍', '🐳', '🐞', '🦕', '🐝', '🐧', '🦩'];
+    // Temáticas de emojis
+    const emojiThemes = {
+      animales: ['🐶', '🐱', '🐰', '🦊', '🐼', '🐸', '🐵', '🦁', '🐯', '🐨', '🐷', '🐮', '🐔', '🦄', '🐙', '🐢', '🐍', '🐳', '🐞', '🦕', '🐝', '🐧', '🦩'],
+      frutas:   ['🍎', '🍌', '🍉', '🍓', '🍒', '🍇', '🍍', '🥝', '🍑', '🍊', '🍋', '🥭', '🍐', '🥥', '🍈', '🍏', '🍅', '🥑', '🥕', '🌽', '🍆', '🥔', '🍠'],
+      vehiculos:['🚗', '🚕', '🚙', '🚌', '🚎', '🏎️', '🚓', '🚑', '🚒', '🚚', '🚛', '🚜', '🛵', '🏍️', '🚲', '🛴', '🚂', '✈️', '🚁', '🚀', '⛵', '🚢', '🛳️'],
+      objetos:  ['🎲', '🎸', '📱', '💻', '🖨️', '📷', '🎥', '🎧', '⌚', '🕹️', '📺', '📻', '🧸', '🎁', '🛒', '🔑', '🗝️', '🛏️', '🚪', '🖼️', '🪑', '🧯', '🧹'],
+      banderas: ['🇦🇷','🇧🇷','🇨🇱','🇺🇾','🇵🇾','🇪🇸','🇲🇽','🇺🇸','🇨🇦','🇯🇵','🇮🇹','🇫🇷','🇩🇪','🇬🇧','🇨🇳','🇮🇳','🇦🇺','🇳🇱','🇵🇹','🇷🇺','🇸🇪','🇳🇴','🇩🇰'],
+      deportes: ['⚽','🏀','🏈','⚾','🎾','🏐','🏉','🎱','🏓','🏸','🥅','🥊','🥋','⛳','🏹','🏒','🏑','🏏','🥌','🛷','⛸️','🏂','⛷️'],
+      comidas: ['🍔','🍟','🍕','🌭','🥪','🥗','🍝','🍜','🍣','🍤','🍦','🍰','🍩','🍪','🍫','🍿','🍭','🍮','🥧','🍯','🥞','🧇','🍛']
+    };
+    let allEmojis = emojiThemes.animales; // Default
+
     const maxLevel = 8;
     const pairsPerLevel = [4, 6, 8, 10, 12, 14, 16];
 
@@ -165,29 +193,27 @@
         return cardEl;
     }
 
-
     function setupGame() {
       firstCard = null;
       lock = false;
       game.innerHTML = '';
 
       const pairs = pairsPerLevel[level];
-const totalCards = pairs * 2;
+      const totalCards = pairs * 2;
 
-// Alternar distribución
-let rows, cols;
-if (level % 2 === 0) {
-  rows = 2;
-  cols = Math.ceil(totalCards / rows);
-} else {
-  cols = 4;
-  rows = Math.ceil(totalCards / cols);
-}
+      // Alternar distribución
+      let rows, cols;
+      if (level % 2 === 0) {
+        rows = 2;
+        cols = Math.ceil(totalCards / rows);
+      } else {
+        cols = 4;
+        rows = Math.ceil(totalCards / cols);
+      }
 
-// Aplicar diseño responsive
-game.style.gridTemplateColumns = `repeat(${cols}, auto)`;
-game.style.gridTemplateRows = `repeat(${rows}, auto)`;
-
+      // Aplicar diseño responsive
+      game.style.gridTemplateColumns = `repeat(${cols}, auto)`;
+      game.style.gridTemplateRows = `repeat(${rows}, auto)`;
 
       const emojis = shuffle(allEmojis).slice(0, pairs);
       const fullSet = shuffle([...emojis, ...emojis]);
@@ -230,29 +256,39 @@ game.style.gridTemplateRows = `repeat(${rows}, auto)`;
 
     restartBtn.addEventListener('click', setupGame);
     toggleDark.addEventListener('click', () => {
-        const themeIcon = document.getElementById('themeIcon');
-
-        function updateThemeIcon() {
-        if (document.documentElement.classList.contains('dark')) {
-            themeIcon.textContent = '☀️';
-        } else {
-            themeIcon.textContent = '🌙';
-        }
-        }
-
-        toggleDark.addEventListener('click', () => {
-        document.documentElement.classList.toggle('dark');
-        updateThemeIcon();
-        });
-
-        // Forzar modo oscuro al iniciar (opcional)
-        document.documentElement.classList.add('dark');
-        updateThemeIcon();
-;
+      document.documentElement.classList.toggle('dark');
+      updateThemeIcon();
     });
 
-    // Inicio
-    setupGame();
+    function updateThemeIcon() {
+      if (document.documentElement.classList.contains('dark')) {
+        themeIcon.textContent = '☀️';
+      } else {
+        themeIcon.textContent = '🌙';
+      }
+    }
+
+    // Forzar modo oscuro al iniciar
+    if (!document.documentElement.classList.contains('dark')) {
+      document.documentElement.classList.add('dark');
+    }
+    updateThemeIcon();
+
+    // --- Selección de temática ---
+    const themeModal = document.getElementById('themeModal');
+    document.querySelectorAll('.theme-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const theme = btn.getAttribute('data-theme');
+        allEmojis = emojiThemes[theme];
+        themeModal.classList.add('hidden');
+        setupGame();
+      });
+    });
+
+    // Evita que el juego arranque hasta elegir temática
+    themeModal.classList.remove('hidden');
+    // No llamar a setupGame() aquí
+
   </script>
 
 </body>
