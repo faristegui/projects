@@ -1,11 +1,12 @@
 ﻿using System;
 using System.IO;
+using System.Net.Http;
 using Newtonsoft.Json;
 using static Program;
 
 class Program
 {
-
+    private static readonly HttpClient httpClient = new HttpClient();
     public class Foto
     {
         public string url { get; set; }
@@ -42,8 +43,8 @@ class Program
         public string Moneda { get; set; }
         public string Importe { get; set; }
         public string Codigo { get; set; }
-        public int SubCub { get; set; }
-        public int SupTot { get; set; }
+        public string SubCub { get; set; }
+        public string SupTot { get; set; }
         public string Destacable { get; set; }
         public string UnidadMedida { get; set; }
         public bool Publica { get; set; }
@@ -101,7 +102,7 @@ class Program
 
             Oferta oferta = JsonConvert.DeserializeObject<Oferta>(json);
 
-            generarHTML(oferta);
+            await generarHTML(oferta);
         }
         catch (Exception ex)
         {
@@ -126,7 +127,30 @@ class Program
         }
     }
 
-    static void generarHTML(Oferta oferta)
+    public static async Task DescargarImagenAsync(string url)
+    {
+        try
+        {
+            string nombreArchivo = Path.GetFileName(new Uri(url).LocalPath);
+
+            string rutaDestino = Path.Combine("fotos", nombreArchivo);
+
+            Directory.CreateDirectory("fotos");
+
+            byte[] contenido = await httpClient.GetByteArrayAsync(url);
+
+            await File.WriteAllBytesAsync(rutaDestino, contenido);
+
+            Console.WriteLine($"Imagen descargada: {rutaDestino}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error al descargar {url}: {ex.Message}");
+        }
+    }
+
+
+    static async Task generarHTML(Oferta oferta)
     {
         string html = @$"<!DOCTYPE html>
                         <html>
@@ -206,24 +230,25 @@ class Program
                                         <ul class=""slides fotofichaslide"">";
                                         foreach (var foto in oferta.fotos)
                                         {
+                                            await DescargarImagenAsync(foto.url);
                                             {
                                                 html += $@"
                                                         <li>
                                                             <img src='fotos/{foto.url.Substring(foto.url.LastIndexOf("/") + 1)}'>
-                                                        </li>""";
+                                                        </li>";
                                             }
                                         }
                         
 
-                                            foreach (var plano in oferta.planos)
+                                        foreach (var plano in oferta.planos)
+                                        {
                                             {
-                                                {
-                                                    html += $@"
-                                                            <li>
-                                                                <img src='fotos/{plano.url.Substring(plano.url.LastIndexOf("/") + 1)}'>
-                                                            </li>""";
-                                                }
+                                                html += $@"
+                                                        <li>
+                                                            <img src='fotos/{plano.url.Substring(plano.url.LastIndexOf("/") + 1)}'>
+                                                        </li>";
                                             }
+                                        }
 
                             html += $@"</ul>
                                       </div>
@@ -275,6 +300,6 @@ class Program
                           </body>
                         </html>";
 
-        File.WriteAllText($@"{oferta.TipoPropiedad.Trim().ToLower()}-{oferta.SubtipoPropiedad.Trim().ToLower()}.php", html);
+        File.WriteAllText($@"{oferta.TipoPropiedad.Trim().ToLower()}.php", html);
     }
 }
